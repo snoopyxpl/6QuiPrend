@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="stageAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1170.0" style="-fx-border-color: red; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sixquiprend.Controller.GameController">
+   <children>
+      <HBox alignment="CENTER" focusTraversable="true" layoutX="164.0" layoutY="77.0" prefHeight="479.0" prefWidth="842.0" style="-fx-border-color: red; -fx-border-radius: 8;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <children>
+            <Pane fx:id="column1" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="col1Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
+               </children></Pane>
+            <Pane fx:id="column2" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="col2Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+               </children></Pane>
+            <Pane fx:id="column3" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="col3Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane fx:id="column4" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="col4Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+               </children></Pane>
+         </children>
+      </HBox>
+      <ImageView fx:id="CplayerCard1" fitHeight="118.0" fitWidth="70.0" layoutX="107.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="currentPlayerName" alignment="CENTER" layoutX="436.0" layoutY="568.0" prefHeight="17.0" prefWidth="298.0" text="Current player name">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="validate" layoutX="997.0" layoutY="666.0" mnemonicParsing="false" onAction="#onValidateClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Valider">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="CplayerCard2" fitHeight="118.0" fitWidth="70.0" layoutX="197.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard3" fitHeight="118.0" fitWidth="70.0" layoutX="285.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard4" fitHeight="118.0" fitWidth="70.0" layoutX="373.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard5" fitHeight="118.0" fitWidth="70.0" layoutX="458.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard6" fitHeight="118.0" fitWidth="70.0" layoutX="543.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard7" fitHeight="118.0" fitWidth="70.0" layoutX="627.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard8" fitHeight="118.0" fitWidth="70.0" layoutX="712.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard9" fitHeight="118.0" fitWidth="70.0" layoutX="796.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CplayerCard10" fitHeight="118.0" fitWidth="70.0" layoutX="880.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@cards/10.png" />
+         </image>
+      </ImageView>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
