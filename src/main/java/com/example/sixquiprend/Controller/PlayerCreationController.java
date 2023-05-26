@@ -40,50 +40,50 @@ public class PlayerCreationController extends BaseController{
 //                }
   //          }
        // }
-        if (Game.option.getNbPlayer()==2){
-            if (fieldPlayerName.getText().isEmpty()){
-                Game.option.getNameList().add(0,fieldPlayerName.getText());
-                System.out.println(Game.option.getNameList().get(0));
-                labelPlayerName.setText("Player Name 2");
-                fieldPlayerName.clear();
-                if (fieldPlayerName.getText().isEmpty()){
-                    Game.option.getNameList().add(1,fieldPlayerName.getText());
-                    System.out.println(Game.option.getNameList().get(1));
-                }else{
-                    labelPlayerName.setText("Veuillez entrer un nom pour le joueur 2");
-                }
-            }else{
-                labelPlayerName.setText("veuillez entrer un nom pour le joueur 1");
-            }
-            System.out.println(Game.option.getNameList().get(0));
-            System.out.println(Game.option.getNameList().get(1));
-            if (Game.option.getNbPlayer()==3){
-                if (fieldPlayerName.getText().isEmpty()){
-                    Game.option.getNameList().add(0,fieldPlayerName.getText());
-                    System.out.println(Game.option.getNameList().get(0));
-                    labelPlayerName.setText("Player Name 2");
-                    fieldPlayerName.clear();
-                    if (fieldPlayerName.getText().isEmpty()){
-                        Game.option.getNameList().add(1,fieldPlayerName.getText());
-                        System.out.println(Game.option.getNameList().get(1));
-                        labelPlayerName.setText("Player Name 3");
-                        if (fieldPlayerName.getText().isEmpty()){
-                            Game.option.getNameList().add(2,fieldPlayerName.getText());
-                        }else{
-                            labelPlayerName.setText("Veuillez entrer un nom pour le joueur 3");
-                        }
-                    }else{
-                        labelPlayerName.setText("Veuillez entrer un nom pour le joueur 2");
-                    }
-                }else{
-                    labelPlayerName.setText("veuillez entrer un nom pour le joueur 1");
-                }
-                System.out.println(Game.option.getNameList().get(0));
-                System.out.println(Game.option.getNameList().get(1));
-                System.out.println(Game.option.getNameList().get(2));
-
-            }
-        }
+//        if (Game.option.getNbPlayer()==2){
+//            if (fieldPlayerName.getText().isEmpty()){
+//                Game.option.getNameList().add(0,fieldPlayerName.getText());
+//                System.out.println(Game.option.getNameList().get(0));
+//                labelPlayerName.setText("Player Name 2");
+//                fieldPlayerName.clear();
+//                if (fieldPlayerName.getText().isEmpty()){
+//                    Game.option.getNameList().add(1,fieldPlayerName.getText());
+//                    System.out.println(Game.option.getNameList().get(1));
+//                }else{
+//                    labelPlayerName.setText("Veuillez entrer un nom pour le joueur 2");
+//                }
+//            }else{
+//                labelPlayerName.setText("veuillez entrer un nom pour le joueur 1");
+//            }
+//            System.out.println(Game.option.getNameList().get(0));
+//            System.out.println(Game.option.getNameList().get(1));
+//            if (Game.option.getNbPlayer()==3){
+//                if (fieldPlayerName.getText().isEmpty()){
+//                    Game.option.getNameList().add(0,fieldPlayerName.getText());
+//                    System.out.println(Game.option.getNameList().get(0));
+//                    labelPlayerName.setText("Player Name 2");
+//                    fieldPlayerName.clear();
+//                    if (fieldPlayerName.getText().isEmpty()){
+//                        Game.option.getNameList().add(1,fieldPlayerName.getText());
+//                        System.out.println(Game.option.getNameList().get(1));
+//                        labelPlayerName.setText("Player Name 3");
+//                        if (fieldPlayerName.getText().isEmpty()){
+//                            Game.option.getNameList().add(2,fieldPlayerName.getText());
+//                        }else{
+//                            labelPlayerName.setText("Veuillez entrer un nom pour le joueur 3");
+//                        }
+//                    }else{
+//                        labelPlayerName.setText("Veuillez entrer un nom pour le joueur 2");
+//                    }
+//                }else{
+//                    labelPlayerName.setText("veuillez entrer un nom pour le joueur 1");
+//                }
+//                System.out.println(Game.option.getNameList().get(0));
+//                System.out.println(Game.option.getNameList().get(1));
+//                System.out.println(Game.option.getNameList().get(2));
+//
+//            }
+//        }
 
 
     }

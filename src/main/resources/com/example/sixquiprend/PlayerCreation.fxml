@@ -23,24 +23,6 @@
             <Font name="Impact" size="18.0" />
          </font>
       </Label>
-      <Pane layoutX="396.0" layoutY="155.0" prefHeight="200.0" prefWidth="395.0">
-         <children>
-            <Label fx:id="labelPlayerName" alignment="CENTER" layoutX="43.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName1">
-               <font>
-                  <Font name="Impact" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="fieldPlayerName" layoutX="93.0" layoutY="53.0" prefHeight="37.0" prefWidth="211.0" />
-            <Button fx:id="okPlayerName" layoutX="177.0" layoutY="107.0" mnemonicParsing="false" onAction="#onOkPlayerNameClick" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: #8a2be2;" text="Ok">
-               <font>
-                  <Font name="Impact" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </Pane>
       <Button fx:id="playButton" layoutX="717.0" layoutY="622.0" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Jouer">
          <font>
             <Font name="Impact" size="18.0" />
@@ -63,5 +45,53 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Pane layoutX="26.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
+         <children>
+            <Label fx:id="labelPlayerName1" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName1">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fieldPlayerName1" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
+         </children>
+      </Pane>
+      <Button fx:id="okPlayerName" layoutX="517.0" layoutY="304.0" mnemonicParsing="false" onAction="#onOkPlayerNameClick" prefHeight="38.0" prefWidth="154.0" style="-fx-background-color: #8a2be2;" text="Valider">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Pane layoutX="309.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
+         <children>
+            <Label fx:id="labelPlayerName2" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName2">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fieldPlayerName2" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="612.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
+         <children>
+            <Label fx:id="labelPlayerName3" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName3">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fieldPlayerName3" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="906.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
+         <children>
+            <Label fx:id="labelPlayerName4" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName4">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fieldPlayerName4" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
