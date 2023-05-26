@@ -7,58 +7,158 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="stageAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1170.0" style="-fx-border-color: red; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sixquiprend.Controller.GameController">
    <children>
-      <HBox alignment="CENTER" focusTraversable="true" layoutX="164.0" layoutY="77.0" prefHeight="479.0" prefWidth="842.0" style="-fx-border-color: red; -fx-border-radius: 8;">
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
+      <VBox layoutX="18.0" layoutY="17.0" prefHeight="486.0" prefWidth="612.0">
          <children>
-            <Pane fx:id="column1" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="column1" prefHeight="136.0" prefWidth="612.0">
                <children>
-                  <ImageView fx:id="col1Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
-               </children></Pane>
-            <Pane fx:id="column2" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="col2Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
-               </children></Pane>
-            <Pane fx:id="column3" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="col3Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="col1Im1" fitHeight="117.0" fitWidth="93.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="103.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="199.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="295.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="395.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="492.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="column4" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="column11" prefHeight="135.0" prefWidth="612.0">
                <children>
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="col4Im1" fitHeight="94.0" fitWidth="70.0" layoutX="65.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
-               </children></Pane>
+                  <ImageView fx:id="col2Im1" fitHeight="117.0" fitWidth="93.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="103.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="199.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="295.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="395.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="492.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="column111" prefHeight="135.0" prefWidth="612.0">
+               <children>
+                  <ImageView fx:id="col3Im1" fitHeight="117.0" fitWidth="93.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="103.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="199.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="295.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="395.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="492.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="column112" prefHeight="135.0" prefWidth="612.0">
+               <children>
+                  <ImageView fx:id="col4Im1" fitHeight="117.0" fitWidth="93.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="103.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="199.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="295.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="395.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="93.0" layoutX="492.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashedImage.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
-      </HBox>
-      <ImageView fx:id="CplayerCard1" fitHeight="118.0" fitWidth="70.0" layoutX="107.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      </VBox>
+      <ImageView fx:id="CplayerCard1" fitHeight="118.0" fitWidth="70.0" layoutX="74.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
       <Label fx:id="currentPlayerName" alignment="CENTER" layoutX="436.0" layoutY="568.0" prefHeight="17.0" prefWidth="298.0" text="Current player name">
@@ -77,78 +177,196 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="CplayerCard2" fitHeight="118.0" fitWidth="70.0" layoutX="197.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard2" fitHeight="118.0" fitWidth="70.0" layoutX="164.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard3" fitHeight="118.0" fitWidth="70.0" layoutX="285.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard3" fitHeight="118.0" fitWidth="70.0" layoutX="251.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard4" fitHeight="118.0" fitWidth="70.0" layoutX="373.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard4" fitHeight="118.0" fitWidth="70.0" layoutX="338.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard5" fitHeight="118.0" fitWidth="70.0" layoutX="458.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard5" fitHeight="118.0" fitWidth="70.0" layoutX="427.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard6" fitHeight="118.0" fitWidth="70.0" layoutX="543.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard6" fitHeight="118.0" fitWidth="70.0" layoutX="515.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard7" fitHeight="118.0" fitWidth="70.0" layoutX="627.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard7" fitHeight="118.0" fitWidth="70.0" layoutX="604.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard8" fitHeight="118.0" fitWidth="70.0" layoutX="712.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard8" fitHeight="118.0" fitWidth="70.0" layoutX="690.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard9" fitHeight="118.0" fitWidth="70.0" layoutX="796.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard9" fitHeight="118.0" fitWidth="70.0" layoutX="775.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CplayerCard10" fitHeight="118.0" fitWidth="70.0" layoutX="880.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="CplayerCard10" fitHeight="118.0" fitWidth="70.0" layoutX="864.0" layoutY="622.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@cards/10.png" />
+            <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
+      <Label alignment="CENTER" layoutX="725.0" layoutY="31.0" prefHeight="17.0" prefWidth="298.0" text="Last Card">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="624.0" layoutY="88.0" prefHeight="172.0" prefWidth="123.0">
+         <children>
+            <ImageView fx:id="lastIma1" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="47.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@Images/dashedImage.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelLast1" alignment="CENTER" layoutX="-87.0" layoutY="14.0" prefHeight="17.0" prefWidth="298.0" text="PlayerName">
+               <font>
+                  <Font name="Impact" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="748.0" layoutY="88.0" prefHeight="172.0" prefWidth="123.0">
+         <children>
+            <ImageView fx:id="lastIma2" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="47.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@Images/dashedImage.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelLast2" alignment="CENTER" layoutX="-87.0" layoutY="14.0" prefHeight="17.0" prefWidth="298.0" text="PlayerName">
+               <font>
+                  <Font name="Impact" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="879.0" layoutY="88.0" prefHeight="172.0" prefWidth="123.0">
+         <children>
+            <ImageView fx:id="lastIma3" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="48.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@Images/dashedImage.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelLast3" alignment="CENTER" layoutX="-87.0" layoutY="14.0" prefHeight="17.0" prefWidth="298.0" text="PlayerName">
+               <font>
+                  <Font name="Impact" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="1003.0" layoutY="88.0" prefHeight="172.0" prefWidth="123.0">
+         <children>
+            <ImageView fx:id="lastIma4" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="47.0" onMouseClicked="#onImageClick" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@Images/dashedImage.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelLast4" alignment="CENTER" layoutX="-87.0" layoutY="14.0" prefHeight="17.0" prefWidth="298.0" text="PlayerName">
+               <font>
+                  <Font name="Impact" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="725.0" layoutY="270.0" prefHeight="17.0" prefWidth="298.0" text="Scores">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSco1" alignment="CENTER" layoutX="630.0" layoutY="332.0" prefHeight="18.0" prefWidth="146.0" text="PlayerName">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSco2" alignment="CENTER" layoutX="630.0" layoutY="372.0" prefHeight="18.0" prefWidth="146.0" text="PlayerName">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSco3" alignment="CENTER" layoutX="630.0" layoutY="417.0" prefHeight="18.0" prefWidth="146.0" text="PlayerName">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSco4" alignment="CENTER" layoutX="630.0" layoutY="461.0" prefHeight="18.0" prefWidth="146.0" text="PlayerName">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="scorePlayer1" alignment="CENTER" layoutX="801.0" layoutY="332.0" prefHeight="18.0" prefWidth="146.0" text="0">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="scorePlayer2" alignment="CENTER" layoutX="801.0" layoutY="372.0" prefHeight="18.0" prefWidth="146.0" text="0">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="scorePlayer3" alignment="CENTER" layoutX="801.0" layoutY="417.0" prefHeight="18.0" prefWidth="146.0" text="0">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="scorePlayer4" alignment="CENTER" layoutX="801.0" layoutY="461.0" prefHeight="18.0" prefWidth="146.0" text="0">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

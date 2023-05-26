@@ -18,7 +18,7 @@
             <Image url="@Images/fond.png" />
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
       <ImageView fitHeight="462.0" fitWidth="544.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -26,7 +26,7 @@
             <Image url="@Images/logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="Play" layoutX="483.0" layoutY="675.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="96.0" prefWidth="238.0" style="-fx-background-color: #8a2be2;" text="Jouer" textFill="WHITE">
+      <Button fx:id="Play" layoutX="483.0" layoutY="675.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="96.0" prefWidth="238.0" style="-fx-background-color: #8a2be2;" text="Démarrer" textFill="WHITE">
          <font>
             <Font name="Impact" size="36.0" />
          </font>

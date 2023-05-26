@@ -1,10 +1,21 @@
 package com.example.sixquiprend;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
     private int nbPlayer;
     Random random = new Random();
+    List<String> nameList=new ArrayList<>();
+
+    public List<String> getNameList() {
+        return nameList;
+    }
+
+    public void setNameList(List<String> nameList) {
+        this.nameList = nameList;
+    }
 
     public static Game option;
     private Game() {}

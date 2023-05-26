@@ -33,7 +33,7 @@ public class HelloController extends BaseController{
             Game.startNewGame();
             Game.option.setNbPlayer(nbPlayerTot);
             //System.out.println(Game.option.getNbPlayer());
-            loadPage("GameBoard");
+            loadPage("PlayerCreation");
         }
         //System.out.println(sliderNbPlayers.getValue());
     }
