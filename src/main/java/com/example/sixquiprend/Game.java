@@ -6,19 +6,17 @@ import java.util.Random;
 
 public class Game {
     private int nbPlayer;
-    Random random = new Random();
-    List<String> nameList=new ArrayList<>();
-
-    public List<String> getNameList() {
-        return nameList;
-    }
-
-    public void setNameList(List<String> nameList) {
-        this.nameList = nameList;
-    }
-
+    private int nbBeefToLoose;
+    private boolean isBotActivated;
     public static Game option;
     private Game() {}
+    public boolean isBotActivated() {
+        return isBotActivated;
+    }
+
+    public void setBotActivated(boolean botActivated) {
+        isBotActivated = botActivated;
+    }
     public static void startNewGame() {
         // A chaque fois qu''on retourne sur le menu principal, on remet les options du jeu à zero
         Game.option = null;
@@ -42,4 +40,23 @@ public class Game {
         String nombreEnString = Integer.toString(number);
         return nombreEnString;
     }
+    public int getNbBeefToLoose() {
+        return nbBeefToLoose;
+    }
+
+    public void setNbBeefToLoose(int nbBeefToLoose) {
+        this.nbBeefToLoose = nbBeefToLoose;
+    }
+
+    Random random = new Random();
+    List<String> nameList=new ArrayList<>();
+
+    public List<String> getNameList() {
+        return nameList;
+    }
+
+    public void setNameList(List<String> nameList) {
+        this.nameList = nameList;
+    }
+
 }

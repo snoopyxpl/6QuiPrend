@@ -17,13 +17,16 @@
             <Font name="Impact" size="30.0" />
          </font>
       </Label>
-      <Slider fx:id="sliderNbeef" layoutX="396.0" layoutY="457.0" min="50.0" prefHeight="50.0" prefWidth="395.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="sliderNbeef" layoutX="396.0" layoutY="457.0" min="50.0" prefHeight="50.0" prefWidth="395.0" showTickLabels="true" showTickMarks="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Slider>
       <Label alignment="CENTER" layoutX="461.0" layoutY="409.0" prefHeight="30.0" prefWidth="266.0" text="Nombre de tête de boeuf maximum">
          <font>
             <Font name="Impact" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="playButton" layoutX="717.0" layoutY="622.0" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Jouer">
+      <Button fx:id="playButton" layoutX="717.0" layoutY="622.0" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Jouer" textFill="WHITE">
          <font>
             <Font name="Impact" size="18.0" />
          </font>
@@ -34,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="quitter" layoutX="328.0" layoutY="622.0" mnemonicParsing="false" onAction="#onLeafClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Quitter">
+      <Button fx:id="quitter" layoutX="328.0" layoutY="622.0" mnemonicParsing="false" onAction="#onLeafClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Quitter" textFill="WHITE">
          <font>
             <Font name="Impact" size="18.0" />
          </font>
@@ -55,14 +58,6 @@
             <TextField fx:id="fieldPlayerName1" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
          </children>
       </Pane>
-      <Button fx:id="okPlayerName" layoutX="517.0" layoutY="304.0" mnemonicParsing="false" onAction="#onOkPlayerNameClick" prefHeight="38.0" prefWidth="154.0" style="-fx-background-color: #8a2be2;" text="Valider">
-         <font>
-            <Font name="Impact" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Pane layoutX="309.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
          <children>
             <Label fx:id="labelPlayerName2" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName2">
@@ -93,5 +88,21 @@
             <TextField fx:id="fieldPlayerName4" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
          </children>
       </Pane>
+      <Button fx:id="okPlayerName" layoutX="520.0" layoutY="317.0" mnemonicParsing="false" onAction="#onOkPlayerNameButtonClick" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Valider les prénoms" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Label fx:id="labelError" alignment="CENTER" layoutX="495.0" layoutY="270.0" prefHeight="17.0" prefWidth="185.0" textFill="RED">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

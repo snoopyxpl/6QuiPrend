@@ -23,41 +23,31 @@ public class GameController extends BaseController{
     @FXML
     private Label currentPlayerName;
     @FXML
-    private ImageView col1Im1;
+    private ImageView col1Im1, col1Im2,col1Im3, col1Im4,col1Im5,col1Im6;
     @FXML
-    private ImageView col2Im1;
+    private ImageView col2Im1,col2Im2,col2Im3,col2Im4,col2Im5,col2Im6;
     @FXML
-    private ImageView col3Im1;
+    private ImageView col3Im1,col3Im2,col3Im3,col3Im4,col3Im5,col3Im6;
     @FXML
-    private ImageView col4Im1;
-    //Introduire toutes les imageViews du board
-    //Ainsi que les scores et lasts cards
+    private ImageView col4Im1,col4Im2,col4Im3,col4Im4,col4Im5,col4Im6;
+    //Introduire toutes les imageViews du board      //done
+    //Introduire lasts cards avec labels        //done
     @FXML
-    private ImageView lastIma1,lastIma2,lastIma3,lastIma4;
+    private Label labelLast1,labelLast2,labelLast3,labelLast4;
+    @FXML
+    private ImageView lastIma1,lastIma2,lastIma3,lastIma4,lastIma1bot;
+    @FXML
+    private Label scorePlayer1,scorePlayer2,scorePlayer3,scorePlayer4;
+    @FXML
+    private Label labelSco1,labelSco2,labelSco3, labelSco4;
+    //introduire les scores
     @FXML
     private Button validate;
 
     @FXML
-    private ImageView CplayerCard1;
-    @FXML
-    private ImageView CplayerCard2;
-    @FXML
-    private ImageView CplayerCard3;
-    @FXML
-    private ImageView CplayerCard4;
-    @FXML
-    private ImageView CplayerCard5;
-    @FXML
-    private ImageView CplayerCard6;
-    @FXML
-    private ImageView CplayerCard7;
-    @FXML
-    private ImageView CplayerCard8;
-    @FXML
-    private ImageView CplayerCard9;
-    @FXML
-    private ImageView CplayerCard10;
-    private List<ImageView> ImageDeck=new ArrayList<>();
+    private ImageView CplayerCard1,CplayerCard2,CplayerCard3,CplayerCard4,CplayerCard5,CplayerCard6,CplayerCard7,CplayerCard8,CplayerCard9,CplayerCard10;
+
+    private final List<ImageView> ImageDeck=new ArrayList<>();
     public void fillImageDeck(){
         ImageDeck.add(0,CplayerCard1);
         ImageDeck.add(1,CplayerCard2);
@@ -80,6 +70,9 @@ public class GameController extends BaseController{
             ImageDeck.get(i).setImage(setAnImage(path));
         }
     }
+    public void addCardOnBoard(int colNumber,Card card){
+        //fonction back pour déterminer si la carte rammasse le tas ...
+    }
     //Faire la même pour afficher sur le plateau
     public void printCardOnBoard(){
 
@@ -99,6 +92,7 @@ public class GameController extends BaseController{
         System.out.println("Image clicked confirmed");
         //CplayerCard1.setImage(setAnImage("cards/1.png"));
         initializeBoard();
+        translateCard(CplayerCard1,lastIma1);
 
         //timer.getTime(3000);
 
@@ -138,8 +132,8 @@ public class GameController extends BaseController{
     public void onValidateClick(){
         System.out.println("Image clicked confirmed");
         CplayerCard1.toFront();
-        //translateCard(lastIma1,CplayerCard1);
-        translateCard(lastIma4,CplayerCard1);
+        //translateCard(CplayerCard1,lastIma1);
+        translateCard(lastIma1,col2Im2);
         //translateCard(lastIma2,CplayerCard2);
 //        col1Im1.setFitHeight(200.0);
 //        col1Im1.setFitWidth(100.0);
@@ -155,7 +149,7 @@ public class GameController extends BaseController{
         imageView.setImage(setAnImage("Images/dashedImage.png"));
     }
 
-    public void translateCard(ImageView targetImageView,ImageView imageToDeplace) {
+    public void translateCard(ImageView imageToDeplace,ImageView targetImageView) {
         // Retour la nouvelle carte du deck
         //CardDeckView.setImage(newCardDeck);
         // Image de la nouvelle Card
@@ -170,14 +164,14 @@ public class GameController extends BaseController{
         // Coordonnée de la carte cible
         double posTrashX = targetImageView.getLocalToSceneTransform().getTx();
         double posTrashY = targetImageView.getLocalToSceneTransform().getTy();
-        // Deplacement de la carte
         int  timeStep = 800;
         // Création et parameters de l'annimation
         TranslateTransition tt = new TranslateTransition(Duration.millis(timeStep), this.cardMovement);
-        tt.setFromX(posImgMoveX-0);
-        tt.setFromY(posImgMoveY-300);
-        tt.setToX(posTrashX-30);
+        tt.setFromX(posImgMoveX);
+        tt.setFromY(posImgMoveY-500);
+        tt.setToX(posTrashX);
         tt.setToY(posTrashY-500);
+        cardMovement.toFront();
         tt.setOnFinished(event-> {
             targetImageView.setImage(imageToDeplace.getImage());
             cardMovement.setVisible(false);

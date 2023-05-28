@@ -21,17 +21,20 @@ public class HelloController extends BaseController{
     private Button Play;
     @FXML
     public void onPlayClick(){
+        System.out.println(sliderNbPlayers.getValue());
         if (!CheckBoxBot.isSelected() && sliderNbPlayers.getValue()==1){
             errorAlone.setText("Vous ne pouvez pas jouer tout seul !");
         }else{
-            int nbPlayerTot;
-            if (CheckBoxBot.isSelected()){
-                nbPlayerTot = (int) (sliderNbPlayers.getValue()+1);
-            }else{
-                nbPlayerTot = (int) sliderNbPlayers.getValue();
-            }
+//            int nbPlayerTot;
+//            if (CheckBoxBot.isSelected()){
+//                nbPlayerTot = (int) (sliderNbPlayers.getValue()+1);
+//            }else{
+//                nbPlayerTot = (int) sliderNbPlayers.getValue();
+//            }
             Game.startNewGame();
-            Game.option.setNbPlayer(nbPlayerTot);
+//            Game.option.setNbPlayer(nbPlayerTot);
+            Game.option.setNbPlayer((int) sliderNbPlayers.getValue());
+            Game.option.setBotActivated(CheckBoxBot.isSelected());
             //System.out.println(Game.option.getNbPlayer());
             loadPage("PlayerCreation");
         }

@@ -11,80 +11,84 @@ public class PlayerCreationController extends BaseController{
     @FXML
     private Button playButton;
     @FXML
-    private TextField fieldPlayerName;
+    private TextField fieldPlayerName1,fieldPlayerName2,fieldPlayerName3,fieldPlayerName4;
     @FXML
     private Label labelPlayerName;
     @FXML
     private Button okPlayerName;
     @FXML
+    private Label labelError;
+    @FXML
     private Slider sliderNbeef;
     @FXML
     private Button quitter;
     public void onPlayButtonClick(){
-        loadPage("GameBoard");
+        if (sliderNbeef.getValue()>=50){
+            Game.option.setNbBeefToLoose((int) sliderNbeef.getValue());
+            loadPage("GameBoard");
+        }
     }
     public void onLeafClick(){
         loadPage("Accueil");
     }
-    public void onOkPlayerNameClick(){
-        //boolean allNamesEntered = false;
-//        for (int i=1;i<=Game.option.getNbPlayer() ;i++){
-//            if (!fieldPlayerName.getText().isEmpty()){
-//                Game.option.getNameList().add(i-1,fieldPlayerName.getText());
-//                System.out.println(Game.option.getNameList().get(0));
-//                labelPlayerName.setText("Player Name "+i);
-//                fieldPlayerName.clear();
-//            }else{
-//                while(fieldPlayerName.getText().isEmpty()){
-//                    labelPlayerName.setText("Veuillez entrer le nom du joueur "+i);
-//                }
-  //          }
-       // }
-//        if (Game.option.getNbPlayer()==2){
-//            if (fieldPlayerName.getText().isEmpty()){
-//                Game.option.getNameList().add(0,fieldPlayerName.getText());
-//                System.out.println(Game.option.getNameList().get(0));
-//                labelPlayerName.setText("Player Name 2");
-//                fieldPlayerName.clear();
-//                if (fieldPlayerName.getText().isEmpty()){
-//                    Game.option.getNameList().add(1,fieldPlayerName.getText());
-//                    System.out.println(Game.option.getNameList().get(1));
-//                }else{
-//                    labelPlayerName.setText("Veuillez entrer un nom pour le joueur 2");
-//                }
-//            }else{
-//                labelPlayerName.setText("veuillez entrer un nom pour le joueur 1");
-//            }
-//            System.out.println(Game.option.getNameList().get(0));
-//            System.out.println(Game.option.getNameList().get(1));
-//            if (Game.option.getNbPlayer()==3){
-//                if (fieldPlayerName.getText().isEmpty()){
-//                    Game.option.getNameList().add(0,fieldPlayerName.getText());
-//                    System.out.println(Game.option.getNameList().get(0));
-//                    labelPlayerName.setText("Player Name 2");
-//                    fieldPlayerName.clear();
-//                    if (fieldPlayerName.getText().isEmpty()){
-//                        Game.option.getNameList().add(1,fieldPlayerName.getText());
-//                        System.out.println(Game.option.getNameList().get(1));
-//                        labelPlayerName.setText("Player Name 3");
-//                        if (fieldPlayerName.getText().isEmpty()){
-//                            Game.option.getNameList().add(2,fieldPlayerName.getText());
-//                        }else{
-//                            labelPlayerName.setText("Veuillez entrer un nom pour le joueur 3");
-//                        }
-//                    }else{
-//                        labelPlayerName.setText("Veuillez entrer un nom pour le joueur 2");
-//                    }
-//                }else{
-//                    labelPlayerName.setText("veuillez entrer un nom pour le joueur 1");
-//                }
-//                System.out.println(Game.option.getNameList().get(0));
-//                System.out.println(Game.option.getNameList().get(1));
-//                System.out.println(Game.option.getNameList().get(2));
-//
-//            }
-//        }
-
-
+    public void onOkPlayerNameButtonClick(){
+        labelError.setText("");
+        if (Game.option.getNbPlayer()==1){
+            if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()){
+                Game.option.getNameList().add(0,fieldPlayerName1.getText());
+                fieldPlayerName1.clear();
+                System.out.println("Player1"+Game.option.getNameList().get(0));
+            }else {
+                labelError.setText("Veuillez renseigner 1 noms !");
+            }
+        }
+        else if (Game.option.getNbPlayer()==2){
+            if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()){
+                Game.option.getNameList().add(0,fieldPlayerName1.getText());
+                Game.option.getNameList().add(1,fieldPlayerName2.getText());
+                fieldPlayerName1.clear();
+                fieldPlayerName2.clear();
+                System.out.println("Player1"+Game.option.getNameList().get(0));
+                System.out.println("Player2"+Game.option.getNameList().get(1));
+            }else {
+                labelError.setText("Veuillez renseigner 2 noms !");
+            }
+        } else if (Game.option.getNbPlayer()==3) {
+            if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()&&!fieldPlayerName3.getText().isEmpty()){
+                Game.option.getNameList().add(0,fieldPlayerName1.getText());
+                Game.option.getNameList().add(1,fieldPlayerName2.getText());
+                Game.option.getNameList().add(2,fieldPlayerName3.getText());
+                fieldPlayerName1.clear();
+                fieldPlayerName2.clear();
+                fieldPlayerName3.clear();
+                System.out.println("Player1"+Game.option.getNameList().get(0));
+                System.out.println("Player2"+Game.option.getNameList().get(1));
+                System.out.println("Player3"+Game.option.getNameList().get(2));
+            }
+            else {
+                labelError.setText("Veuillez renseigner 3 noms !");
+            }
+        }else if (Game.option.getNbPlayer()==4) {
+            if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()&&!fieldPlayerName3.getText().isEmpty()){
+                Game.option.getNameList().add(0,fieldPlayerName1.getText());
+                Game.option.getNameList().add(1,fieldPlayerName2.getText());
+                Game.option.getNameList().add(2,fieldPlayerName3.getText());
+                Game.option.getNameList().add(3,fieldPlayerName4.getText());
+                fieldPlayerName1.clear();
+                fieldPlayerName2.clear();
+                fieldPlayerName3.clear();
+                fieldPlayerName4.clear();
+                System.out.println("Player1"+Game.option.getNameList().get(0));
+                System.out.println("Player2"+Game.option.getNameList().get(1));
+                System.out.println("Player3"+Game.option.getNameList().get(2));
+                System.out.println("Player4"+Game.option.getNameList().get(3));
+            }
+            else {
+                labelError.setText("Veuillez renseigner 4 noms !");
+            }
+        }
+    }
+    public void initializeNbBeeftoLoose(){
+        Game.option.setNbBeefToLoose((int) sliderNbeef.getValue());
     }
 }
