@@ -5,6 +5,7 @@ import com.example.sixquiprend.Items.Card;
 import com.example.sixquiprend.Timer;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,7 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameController extends BaseController{
     Timer timer = new Timer();
@@ -43,22 +46,43 @@ public class GameController extends BaseController{
     //introduire les scores
     @FXML
     private Button validate;
+    @FXML
+    private Button quitter;
 
     @FXML
     private ImageView CplayerCard1,CplayerCard2,CplayerCard3,CplayerCard4,CplayerCard5,CplayerCard6,CplayerCard7,CplayerCard8,CplayerCard9,CplayerCard10;
+    //Stocker l'id de l'image qui est joué par le joueur
+    @FXML
+    private String currentImageOnClick;
+    @FXML
+    private ImageView CplayerCardRef;
 
     private final List<ImageView> ImageDeck=new ArrayList<>();
+    private Map<String, ImageView> imageDeck = new HashMap<>();
+    public void onLeafClick(){
+        loadPage("Accueil");
+    }
     public void fillImageDeck(){
-        ImageDeck.add(0,CplayerCard1);
-        ImageDeck.add(1,CplayerCard2);
-        ImageDeck.add(2,CplayerCard3);
-        ImageDeck.add(3,CplayerCard4);
-        ImageDeck.add(4,CplayerCard5);
-        ImageDeck.add(5,CplayerCard6);
-        ImageDeck.add(6,CplayerCard7);
-        ImageDeck.add(7,CplayerCard8);
-        ImageDeck.add(8,CplayerCard9);
-        ImageDeck.add(9,CplayerCard10);
+        imageDeck.put("CplayerCard1", CplayerCard1);
+        imageDeck.put("CplayerCard2", CplayerCard2);
+        imageDeck.put("CplayerCard3", CplayerCard3);
+        imageDeck.put("CplayerCard4", CplayerCard4);
+        imageDeck.put("CplayerCard5", CplayerCard5);
+        imageDeck.put("CplayerCard6", CplayerCard6);
+        imageDeck.put("CplayerCard7", CplayerCard7);
+        imageDeck.put("CplayerCard8", CplayerCard8);
+        imageDeck.put("CplayerCard9", CplayerCard9);
+        imageDeck.put("CplayerCard10", CplayerCard10);
+//        ImageDeck.add(0,CplayerCard1);
+//        ImageDeck.add(1,CplayerCard2);
+//        ImageDeck.add(2,CplayerCard3);
+//        ImageDeck.add(3,CplayerCard4);
+//        ImageDeck.add(4,CplayerCard5);
+//        ImageDeck.add(5,CplayerCard6);
+//        ImageDeck.add(6,CplayerCard7);
+//        ImageDeck.add(7,CplayerCard8);
+//        ImageDeck.add(8,CplayerCard9);
+//        ImageDeck.add(9,CplayerCard10);
     }
 
 
@@ -67,7 +91,10 @@ public class GameController extends BaseController{
         int lenDeck = deck.size();
         for (int i=0;i<=lenDeck-1;i++){
             String path = "cards/"+deck.get(i).getValue()+".png";
-            ImageDeck.get(i).setImage(setAnImage(path));
+            ImageView imageView = imageDeck.get("CplayerCard" + (i + 1));
+            if (imageView != null) {
+                imageView.setImage(setAnImage(path));
+            }
         }
     }
     public void addCardOnBoard(int colNumber,Card card){
@@ -86,21 +113,65 @@ public class GameController extends BaseController{
 
         }
     }
+    public void ImageDeckID(){
+        for (Map.Entry<String, ImageView> entry : imageDeck.entrySet()) {
+            ImageView imageView = entry.getValue();
+            imageView.setOnMouseClicked(event -> {
+                currentImageOnClick = entry.getKey();
+                resizeImage(imageDeck.get(currentImageOnClick));
+                System.out.println("Salut");
+            });
+        }
+        System.out.println("intérieur de la fonction ImageDeckID");
+    }
+    public void resizeImage(ImageView imageView){
+        imageView.toFront();
+        double originalWidth = imageView.getImage().getWidth();
+        double originalHeight = imageView.getImage().getHeight();
+
+        double scaleFactor = Math.min(140 / originalWidth, 140 / originalHeight);
+        double newWidth = originalWidth * scaleFactor;
+        double newHeight = originalHeight * scaleFactor;
+
+        imageView.setFitWidth(newWidth);
+        imageView.setFitHeight(newHeight);
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+
+        // Calcul du décalage horizontal et vertical pour centrer l'image
+        double offsetX = (140 - newWidth)/4 ;
+        double offsetY = (140 - newHeight) /4;
+
+        imageView.setX(-offsetX);
+        imageView.setY(-offsetY);
+
+    }
+    public void resetImageSize(ImageView imageView) {
+        imageView.setFitWidth(CplayerCardRef.getFitWidth());
+        imageView.setFitHeight(CplayerCardRef.getFitHeight());
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        imageView.setX(0);
+        imageView.setY(0);
+    }
 
     @FXML
     public void onImageClick(){
-        System.out.println("Image clicked confirmed");
+
+        //System.out.println("Image clicked confirmed");
         //CplayerCard1.setImage(setAnImage("cards/1.png"));
-        initializeBoard();
-        translateCard(CplayerCard1,lastIma1);
+        //initializeBoard();
+        //translateCard(CplayerCard1,lastIma1);
+        //System.out.println(currentImageOnClick);
+        //System.out.println();
 
         //timer.getTime(3000);
 
     }
     @FXML
-    public void initializeBoard(){
-
+    public void initialize(){
         fillImageDeck();
+        ImageDeckID();
         int Ncol1Im1 = Game.option.giveCardRandom();
         String path = "cards/"+Game.option.IntToString(Ncol1Im1)+".png";
         printImage(path,col1Im1);
@@ -114,11 +185,14 @@ public class GameController extends BaseController{
 
         //test unitaire de la fonction affichage du deck du current player
         List<Card> TestCardList = new ArrayList<>();
-        TestCardList.add(0,new Card(2,1));
-        TestCardList.add(1,new Card(3,2));
-        TestCardList.add(2,new Card(5,3));
-        TestCardList.add(3,new Card(15,5));
-        TestCardList.add(4,new Card(103,1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+
 
         printDeckPlayer(TestCardList);
 
@@ -132,8 +206,11 @@ public class GameController extends BaseController{
     public void onValidateClick(){
         System.out.println("Image clicked confirmed");
         CplayerCard1.toFront();
+        System.out.println("Dans validate Click");
         //translateCard(CplayerCard1,lastIma1);
-        translateCard(lastIma1,col2Im2);
+        translateCard(imageDeck.get(currentImageOnClick),lastIma1);
+        resetImageSize(imageDeck.get(currentImageOnClick));
+        System.out.println(currentImageOnClick);
         //translateCard(lastIma2,CplayerCard2);
 //        col1Im1.setFitHeight(200.0);
 //        col1Im1.setFitWidth(100.0);
