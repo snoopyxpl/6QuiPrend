@@ -39,9 +39,8 @@ public class PlayerCreationController extends BaseController{
         labelError.setText("");
         if (Game.option.getNbPlayer()==1){
             if (!fieldPlayerName1.getText().isEmpty()){
-                Game.option.getNameList().add(0,fieldPlayerName1.getText());
+                Game.option.addPlayerToList(fieldPlayerName1.getText(),1);
                 fieldPlayerName1.clear();
-                System.out.println("Player1"+Game.option.getNameList().get(0));
                 areAllNameCompleted=true;
             }else {
                 labelError.setText("Veuillez renseigner 1 noms !");
@@ -50,12 +49,10 @@ public class PlayerCreationController extends BaseController{
         }
         else if (Game.option.getNbPlayer()==2){
             if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()){
-                Game.option.getNameList().add(0,fieldPlayerName1.getText());
-                Game.option.getNameList().add(1,fieldPlayerName2.getText());
+                Game.option.addPlayerToList(fieldPlayerName1.getText(),1);
+                Game.option.addPlayerToList(fieldPlayerName2.getText(),2);
                 fieldPlayerName1.clear();
                 fieldPlayerName2.clear();
-                System.out.println("Player1"+Game.option.getNameList().get(0));
-                System.out.println("Player2"+Game.option.getNameList().get(1));
                 areAllNameCompleted=true;
             }else {
                 labelError.setText("Veuillez renseigner 2 noms !");
@@ -63,15 +60,12 @@ public class PlayerCreationController extends BaseController{
             }
         } else if (Game.option.getNbPlayer()==3) {
             if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()&&!fieldPlayerName3.getText().isEmpty()){
-                Game.option.getNameList().add(0,fieldPlayerName1.getText());
-                Game.option.getNameList().add(1,fieldPlayerName2.getText());
-                Game.option.getNameList().add(2,fieldPlayerName3.getText());
+                Game.option.addPlayerToList(fieldPlayerName1.getText(),1);
+                Game.option.addPlayerToList(fieldPlayerName2.getText(),2);
+                Game.option.addPlayerToList(fieldPlayerName3.getText(),3);
                 fieldPlayerName1.clear();
                 fieldPlayerName2.clear();
                 fieldPlayerName3.clear();
-                System.out.println("Player1"+Game.option.getNameList().get(0));
-                System.out.println("Player2"+Game.option.getNameList().get(1));
-                System.out.println("Player3"+Game.option.getNameList().get(2));
                 areAllNameCompleted=true;
             }
             else {
@@ -80,18 +74,14 @@ public class PlayerCreationController extends BaseController{
             }
         }else if (Game.option.getNbPlayer()==4) {
             if (!fieldPlayerName1.getText().isEmpty()&&!fieldPlayerName2.getText().isEmpty()&&!fieldPlayerName3.getText().isEmpty()){
-                Game.option.getNameList().add(0,fieldPlayerName1.getText());
-                Game.option.getNameList().add(1,fieldPlayerName2.getText());
-                Game.option.getNameList().add(2,fieldPlayerName3.getText());
-                Game.option.getNameList().add(3,fieldPlayerName4.getText());
+                Game.option.addPlayerToList(fieldPlayerName1.getText(),1);
+                Game.option.addPlayerToList(fieldPlayerName2.getText(),2);
+                Game.option.addPlayerToList(fieldPlayerName3.getText(),3);
+                Game.option.addPlayerToList(fieldPlayerName4.getText(),4);
                 fieldPlayerName1.clear();
                 fieldPlayerName2.clear();
                 fieldPlayerName3.clear();
                 fieldPlayerName4.clear();
-                System.out.println("Player1"+Game.option.getNameList().get(0));
-                System.out.println("Player2"+Game.option.getNameList().get(1));
-                System.out.println("Player3"+Game.option.getNameList().get(2));
-                System.out.println("Player4"+Game.option.getNameList().get(3));
                 areAllNameCompleted=true;
             }
             else {

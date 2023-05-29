@@ -52,10 +52,12 @@ public class GameController extends BaseController{
     @FXML
     private ImageView CplayerCard1,CplayerCard2,CplayerCard3,CplayerCard4,CplayerCard5,CplayerCard6,CplayerCard7,CplayerCard8,CplayerCard9,CplayerCard10;
     //Stocker l'id de l'image qui est joué par le joueur
-    @FXML
-    private String currentImageOnClick;
+
     @FXML
     private ImageView CplayerCardRef;
+    @FXML
+    private String currentImageOnClick;
+    private int i;
 
     private final List<ImageView> ImageDeck=new ArrayList<>();
     private Map<String, ImageView> imageDeck = new HashMap<>();
@@ -73,16 +75,6 @@ public class GameController extends BaseController{
         imageDeck.put("CplayerCard8", CplayerCard8);
         imageDeck.put("CplayerCard9", CplayerCard9);
         imageDeck.put("CplayerCard10", CplayerCard10);
-//        ImageDeck.add(0,CplayerCard1);
-//        ImageDeck.add(1,CplayerCard2);
-//        ImageDeck.add(2,CplayerCard3);
-//        ImageDeck.add(3,CplayerCard4);
-//        ImageDeck.add(4,CplayerCard5);
-//        ImageDeck.add(5,CplayerCard6);
-//        ImageDeck.add(6,CplayerCard7);
-//        ImageDeck.add(7,CplayerCard8);
-//        ImageDeck.add(8,CplayerCard9);
-//        ImageDeck.add(9,CplayerCard10);
     }
 
 
@@ -117,9 +109,18 @@ public class GameController extends BaseController{
         for (Map.Entry<String, ImageView> entry : imageDeck.entrySet()) {
             ImageView imageView = entry.getValue();
             imageView.setOnMouseClicked(event -> {
+                if (i==0){
+                    resetImageSize(CplayerCard1);
+                }else{
+                    resetImageSize(imageDeck.get(currentImageOnClick));
+                }
                 currentImageOnClick = entry.getKey();
                 resizeImage(imageDeck.get(currentImageOnClick));
                 System.out.println("Salut");
+                i+=1;
+            });
+            imageView.setOnMouseDragOver(event ->{
+
             });
         }
         System.out.println("intérieur de la fonction ImageDeckID");
@@ -129,7 +130,7 @@ public class GameController extends BaseController{
         double originalWidth = imageView.getImage().getWidth();
         double originalHeight = imageView.getImage().getHeight();
 
-        double scaleFactor = Math.min(140 / originalWidth, 140 / originalHeight);
+        double scaleFactor = Math.min(125 / originalWidth, 125 / originalHeight);
         double newWidth = originalWidth * scaleFactor;
         double newHeight = originalHeight * scaleFactor;
 
@@ -139,8 +140,8 @@ public class GameController extends BaseController{
         imageView.setSmooth(true);
 
         // Calcul du décalage horizontal et vertical pour centrer l'image
-        double offsetX = (140 - newWidth)/4 ;
-        double offsetY = (140 - newHeight) /4;
+        double offsetX = (125 - newWidth)/4 ;
+        double offsetY = (125 - newHeight) /4;
 
         imageView.setX(-offsetX);
         imageView.setY(-offsetY);
@@ -204,6 +205,8 @@ public class GameController extends BaseController{
     }
 
     public void onValidateClick(){
+        //Réinitialiser le conteur i (resetImage)
+        i=0;
         System.out.println("Image clicked confirmed");
         CplayerCard1.toFront();
         System.out.println("Dans validate Click");

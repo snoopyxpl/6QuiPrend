@@ -1,13 +1,17 @@
 package com.example.sixquiprend;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import com.example.sixquiprend.Items.Card;
+import javafx.scene.image.ImageView;
+
+import java.util.*;
 
 public class Game {
     private int nbPlayer;
     private int nbBeefToLoose;
     private boolean isBotActivated;
+    private int currentPlayer;
+    private boolean isGameClosed;
+    //indique si la partie est terminé et qu'il ne reste plus qu'à compter les têtes de boeufs
     public static Game option;
     private Game() {}
     public boolean isBotActivated() {
@@ -49,14 +53,68 @@ public class Game {
     }
 
     Random random = new Random();
-    List<String> nameList=new ArrayList<>();
+    GameGestion gameGestion = new GameGestion();
+    private List<Player> playerList=new ArrayList<>();
+    private Map<Integer , Player> playerBaseNum = new HashMap<>();
+    private List<Card> lastCardBoardList = new ArrayList<>();
 
-    public List<String> getNameList() {
-        return nameList;
+
+    public void addPlayerToList(String name,int numPlayer){
+        Player player = new Player(name,numPlayer);
+        playerList.add(0,player);
     }
 
-    public void setNameList(List<String> nameList) {
-        this.nameList = nameList;
+    public int getCurrentPlayer() {
+        return currentPlayer;
     }
 
+    public List<Card> getLastCardBoardList() {
+        return lastCardBoardList;
+    }
+
+    public void setLastCardBoardList(List<Card> lastCardBoardList) {
+        this.lastCardBoardList = lastCardBoardList;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public boolean isGameClosed() {
+        return isGameClosed;
+    }
+
+    public void setGameClosed(boolean gameClosed) {
+        isGameClosed = gameClosed;
+    }
+
+    public List<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public void setPlayerList(List<Player> playerList) {
+        playerList = playerList;
+    }
+    public void initialization(){
+        makeHashMapPlayer();
+
+    }
+
+    public void endTurnPlayer(Player lastPlayer, Card cardPlayed){
+        isGameClosed = lastPlayer.isGameLoose();
+        if (isGameClosed){
+            //controller
+        }
+        lastPlayer.setLastCard(cardPlayed);
+        currentPlayer++;
+    }
+    public void makeHashMapPlayer(){
+        for (Player player : playerList){
+            playerBaseNum.put(player.getNumPlayer(),player);
+        }
+    }
+
+    public int getPlaceOfCardPlayed(Card cardPlayed){
+        return gameGestion.inWichRow(cardPlayed,lastCardBoardList);
+    }
 }

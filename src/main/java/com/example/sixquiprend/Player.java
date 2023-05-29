@@ -8,10 +8,29 @@ public class Player {
     private String name;
     private int nbBeefTot;
     List<Card> deckCard;
+    private Card lastCard;
+    private int numPlayer;
 
-    public Player(String name, int nbBeefTot) {
+    public int getNumPlayer() {
+        return numPlayer;
+    }
+
+    public void setNumPlayer(int numPlayer) {
+        this.numPlayer = numPlayer;
+    }
+
+    public Card getLastCard() {
+        return lastCard;
+    }
+
+    public void setLastCard(Card lastCard) {
+        this.lastCard = lastCard;
+    }
+
+    public Player(String name,int numPlayer) {
         this.name = name;
-        this.nbBeefTot = nbBeefTot;
+        this.nbBeefTot = 0;
+        this.numPlayer=numPlayer;
     }
 
     public List<Card> getDeckCard() {
@@ -36,5 +55,12 @@ public class Player {
 
     public void setNbBeefTot(int nbBeefTot) {
         this.nbBeefTot = nbBeefTot;
+    }
+    public boolean isGameLoose(){
+        if (nbBeefTot>=Game.option.getNbBeefToLoose()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
