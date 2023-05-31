@@ -6,6 +6,7 @@ import com.example.sixquiprend.Timer;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -56,7 +57,7 @@ public class GameController extends BaseController{
     @FXML
     private ImageView CplayerCardRef;
     @FXML
-    private String currentImageOnClick;
+    private ImageView currentImageOnClick;
     private int i;
 
     private final List<ImageView> ImageDeck=new ArrayList<>();
@@ -82,10 +83,11 @@ public class GameController extends BaseController{
     public void printDeckPlayer(List<Card> deck){
         int lenDeck = deck.size();
         for (int i=0;i<=lenDeck-1;i++){
-            String path = "cards/"+deck.get(i).getValue()+".png";
+            int Num = deck.get(i).getValue();
             ImageView imageView = imageDeck.get("CplayerCard" + (i + 1));
             if (imageView != null) {
-                imageView.setImage(setAnImage(path));
+                //imageView.setImage(setAnImage(path));
+                printImage(Num,imageView);
             }
         }
     }
@@ -114,8 +116,8 @@ public class GameController extends BaseController{
                 }else{
                     resetImageSize(imageDeck.get(currentImageOnClick));
                 }
-                currentImageOnClick = entry.getKey();
-                resizeImage(imageDeck.get(currentImageOnClick));
+                //currentImageOnClick = entry.getKey();
+                bigSizeImage(imageDeck.get(currentImageOnClick));
                 System.out.println("Salut");
                 i+=1;
             });
@@ -125,7 +127,20 @@ public class GameController extends BaseController{
         }
         System.out.println("intérieur de la fonction ImageDeckID");
     }
-    public void resizeImage(ImageView imageView){
+    public void onImageDeckMouseClick(ImageView imageView){
+        imageView.setOnMouseClicked(event -> {
+            if (i==0){
+                resetImageSize(CplayerCard1);
+            }else{
+                resetImageSize(currentImageOnClick);
+            }
+            currentImageOnClick= imageView;
+            bigSizeImage(imageView);
+            //System.out.println("Salut");
+            i+=1;
+        });
+    }
+    public void bigSizeImage(ImageView imageView){
         imageView.toFront();
         double originalWidth = imageView.getImage().getWidth();
         double originalHeight = imageView.getImage().getHeight();
@@ -154,6 +169,7 @@ public class GameController extends BaseController{
         imageView.setSmooth(true);
         imageView.setX(0);
         imageView.setY(0);
+        //imageView.setOpacity(0.5);
     }
 
     @FXML
@@ -172,17 +188,18 @@ public class GameController extends BaseController{
     @FXML
     public void initialize(){
         fillImageDeck();
-        ImageDeckID();
+        //ImageDeckID();
         int Ncol1Im1 = Game.option.giveCardRandom();
         String path = "cards/"+Game.option.IntToString(Ncol1Im1)+".png";
-        printImage(path,col1Im1);
+        printImage(Ncol1Im1,col1Im1);
         //col1Im1.setImage(setAnImage("cards/"+Game.option.IntToString(Ncol1Im1)+".png"));
         int Ncol2Im1 = Game.option.giveCardRandom();
-        col2Im1.setImage(setAnImage("cards/"+Game.option.IntToString(Ncol2Im1)+".png"));
+        printImage(Ncol2Im1,col2Im1);
         int Ncol3Im1 = Game.option.giveCardRandom();
-        col3Im1.setImage(setAnImage("cards/"+Game.option.IntToString(Ncol3Im1)+".png"));
+        printImage(Ncol3Im1,col3Im1);
         int Ncol4Im1 = Game.option.giveCardRandom();
-        col4Im1.setImage(setAnImage("cards/"+Game.option.IntToString(Ncol4Im1)+".png"));
+        printImage(Ncol4Im1,col4Im1);
+        printImage(55,lastIma1);
 
         //test unitaire de la fonction affichage du deck du current player
         List<Card> TestCardList = new ArrayList<>();
@@ -211,8 +228,9 @@ public class GameController extends BaseController{
         CplayerCard1.toFront();
         System.out.println("Dans validate Click");
         //translateCard(CplayerCard1,lastIma1);
-        translateCard(imageDeck.get(currentImageOnClick),lastIma1);
-        resetImageSize(imageDeck.get(currentImageOnClick));
+        translateCard(currentImageOnClick,lastIma2);
+        resetImageSize(currentImageOnClick);
+        //translateCard(lastIma1,col2Im2);
         System.out.println(currentImageOnClick);
         //translateCard(lastIma2,CplayerCard2);
 //        col1Im1.setFitHeight(200.0);
@@ -222,42 +240,52 @@ public class GameController extends BaseController{
     }
 
     //Faire deux fonctions élémentaires : qui affiche une carte et qui enlève une carte (et donc remet l'ancienne image)
-    public void printImage(String path, ImageView imageView){
-        imageView.setImage(setAnImage(path));
+    public void printImage(int Num, ImageView imageView){
+        imageView.setImage(setAnImage("cards/"+Game.option.IntToString(Num)+".png"));
+        imageView.setOpacity(1);
+        onImageDeckMouseClick(imageView);
+        imageView.setCursor(Cursor.HAND);
     }//Ensuite, à toi de te démerder pour faire le path avant
     public void removeImage(ImageView imageView){
         imageView.setImage(setAnImage("Images/dashedImage.png"));
+        imageView.setOpacity(0.5);
+        imageView.setOnMouseClicked(event ->{});
+        imageView.setCursor(Cursor.DEFAULT);
     }
 
     public void translateCard(ImageView imageToDeplace,ImageView targetImageView) {
-        // Retour la nouvelle carte du deck
-        //CardDeckView.setImage(newCardDeck);
-        // Image de la nouvelle Card
-        //String pathImgGet = this.playerTurn.getCardInIsHandImgPath();
-        //Image newRubbichImg = ControlleurBase.setAnImage(pathImgGet);
-        // Deplace le cardMovement sur la position du deck selectionné
-        double posImgMoveX = imageToDeplace.getLocalToSceneTransform().getTx();
-        double posImgMoveY = imageToDeplace.getLocalToSceneTransform().getTy();
-        // Met l'imageS de CardSelect et la rend visible
-        this.cardMovement.setImage(imageToDeplace.getImage());
-        this.cardMovement.setVisible(true);
-        // Coordonnée de la carte cible
-        double posTrashX = targetImageView.getLocalToSceneTransform().getTx();
-        double posTrashY = targetImageView.getLocalToSceneTransform().getTy();
-        int  timeStep = 800;
-        // Création et parameters de l'annimation
-        TranslateTransition tt = new TranslateTransition(Duration.millis(timeStep), this.cardMovement);
-        tt.setFromX(posImgMoveX);
-        tt.setFromY(posImgMoveY-500);
-        tt.setToX(posTrashX);
-        tt.setToY(posTrashY-500);
-        cardMovement.toFront();
-        tt.setOnFinished(event-> {
-            targetImageView.setImage(imageToDeplace.getImage());
-            cardMovement.setVisible(false);
-            imageToDeplace.setImage(setAnImage("Images/dashedImage.png"));
-            //this.endTurn();
-        });
-        tt.play();
+        if (imageToDeplace!=null) {
+            // Retour la nouvelle carte du deck
+            //CardDeckView.setImage(newCardDeck);
+            // Image de la nouvelle Card
+            //String pathImgGet = this.playerTurn.getCardInIsHandImgPath();
+            //Image newRubbichImg = ControlleurBase.setAnImage(pathImgGet);
+            // Deplace le cardMovement sur la position du deck selectionné
+            double posImgMoveX = imageToDeplace.getLocalToSceneTransform().getTx();
+            double posImgMoveY = imageToDeplace.getLocalToSceneTransform().getTy();
+            // Met l'imageS de CardSelect et la rend visible
+            this.cardMovement.setImage(imageToDeplace.getImage());
+            this.cardMovement.setVisible(true);
+            // Coordonnée de la carte cible
+            double posTrashX = targetImageView.getLocalToSceneTransform().getTx();
+            double posTrashY = targetImageView.getLocalToSceneTransform().getTy();
+            int timeStep = 800;
+            // Création et parameters de l'annimation
+            TranslateTransition tt = new TranslateTransition(Duration.millis(timeStep), this.cardMovement);
+            tt.setFromX(posImgMoveX);
+            tt.setFromY(posImgMoveY - 500);
+            tt.setToX(posTrashX);
+            tt.setToY(posTrashY - 500);
+            cardMovement.toFront();
+            tt.setOnFinished(event -> {
+                targetImageView.setImage(imageToDeplace.getImage());
+                targetImageView.setOpacity(1);
+                cardMovement.setVisible(false);
+                //imageToDeplace.setImage(setAnImage("Images/dashedImage.png"));
+                removeImage(imageToDeplace);
+                //this.endTurn();
+            });
+            tt.play();
+        }
     }
 }
