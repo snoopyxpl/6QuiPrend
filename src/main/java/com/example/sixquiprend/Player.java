@@ -2,12 +2,13 @@ package com.example.sixquiprend;
 
 import com.example.sixquiprend.Items.Card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
     private String name;
     private int nbBeefTot;
-    List<Card> deckCard;
+    private List<Card> hand=new ArrayList<>();
     private Card lastCard;
     private int numPlayer;
 
@@ -27,18 +28,20 @@ public class Player {
         this.lastCard = lastCard;
     }
 
-    public Player(String name,int numPlayer) {
+    public Player(String name,int numPlayer,List<Card> hand) {
         this.name = name;
         this.nbBeefTot = 0;
         this.numPlayer=numPlayer;
+        this.hand=hand;
+
     }
 
-    public List<Card> getDeckCard() {
-        return deckCard;
+    public List<Card> gethand() {
+        return hand;
     }
 
-    public void setDeckCard(List<Card> deckCard) {
-        this.deckCard = deckCard;
+    public void setDeckCard(List<Card> hand) {
+        this.hand = hand;
     }
 
     public String getName() {
@@ -62,5 +65,25 @@ public class Player {
         }else{
             return false;
         }
+    }
+    public void addtohand(Card card){
+        this.hand.add(card);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", hand=" + hand +
+                ", numPlayer=" + numPlayer +
+                '}';
+    }
+
+    public List<Card> getHand() {
+        return hand;
+    }
+
+    public void setHand(List<Card> hand) {
+        this.hand = hand;
     }
 }

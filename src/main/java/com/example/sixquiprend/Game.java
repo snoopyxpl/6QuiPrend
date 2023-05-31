@@ -1,7 +1,6 @@
 package com.example.sixquiprend;
 
 import com.example.sixquiprend.Items.Card;
-import javafx.scene.image.ImageView;
 
 import java.util.*;
 
@@ -11,9 +10,42 @@ public class Game {
     private boolean isBotActivated;
     private int currentPlayer;
     private boolean isGameClosed;
+
+    private List<Card> deck,listlastcard,listlastcardontable;
+
+    private List<List<Card>> table = new ArrayList<>(Arrays.asList(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+
+
     //indique si la partie est terminé et qu'il ne reste plus qu'à compter les têtes de boeufs
+    public List<Card> shuffle() {
+        deck = Card.generateDeck();
+        Collections.shuffle(deck);
+        return deck;
+    }
+    public void dealCards() {
+        for (int i = 0; i < 10; i++) {
+            for (Player player : playerList) {
+                Card card = deck.remove(0);
+                player.addtohand(card);
+            }
+        }
+    }
+    public void shorthand(){
+        for (Player player : playerList) {
+           List<Card> hand= player.getHand();
+           CardMergeSorter.mergeSortByValue(hand);
+           player.setHand(hand);
+        }
+    }
+
+    public List<Card> getDeck() {
+        return deck;
+    }
+
     public static Game option;
-    private Game() {}
+    public Game() {
+        this.deck = shuffle();
+    }
     public boolean isBotActivated() {
         return isBotActivated;
     }
@@ -59,8 +91,8 @@ public class Game {
     private List<Card> lastCardBoardList = new ArrayList<>();
 
 
-    public void addPlayerToList(String name,int numPlayer){
-        Player player = new Player(name,numPlayer);
+    public void addPlayerToList(String name,int numPlayer, List<Card> hand){
+        Player player = new Player(name,numPlayer,hand);
         playerList.add(0,player);
     }
 
@@ -93,12 +125,13 @@ public class Game {
     }
 
     public void setPlayerList(List<Player> playerList) {
-        playerList = playerList;
+        this.playerList = playerList;
     }
     public void initialization(){
         makeHashMapPlayer();
 
     }
+
 
     public void endTurnPlayer(Player lastPlayer, Card cardPlayed){
         isGameClosed = lastPlayer.isGameLoose();
@@ -116,5 +149,48 @@ public class Game {
 
     public int getPlaceOfCardPlayed(Card cardPlayed){
         return gameGestion.inWichRow(cardPlayed,lastCardBoardList);
+    }
+    public void addfirscardtotable(){
+        for (List<Card> row : table) {
+            Card card = deck.remove(0);
+            row.add(card);
+            listlastcardontable.add(card);
+        }
+
+    }
+    public void  getPlayerWithMatchingLastCardValue() {
+        for (List<Card> row : table) {
+            if (row.size() == 6) {
+                int sixthElementValue = row.get(5).getValue(); // Récupère la valeur du sixième élément de la liste
+                int columnSum = 0; // Variable pour stocker la somme des valeurs des cartes de la colonne
+                for (List<Card> column : table) {
+                    if (column.size() >= 6) {
+                        columnSum += column.get(5).getBeefhead(); // Ajoute la valeur du sixième élément de la colonne à la somme
+                    }
+                }
+                for (Player player : playerList) {
+                    if (player.getLastCard().getValue() == sixthElementValue) {
+                        player.setNbBeefTot(player.getNbBeefTot() - columnSum); // Soustrait la somme des valeurs de la colonne du score du joueur
+                        row.clear();
+                        row.add(0, player.getLastCard());
+                    }
+                }
+            }
+        }
+    }
+
+    public void setplayerlastcard(Player player,Card card){
+        player.setLastCard(card);
+        listlastcard.add(card);
+    }
+    public void setOrderToPlaceCardOnTable() {
+        List<Card> shortlistlastcard = CardMergeSorter.mergeSortByValue(listlastcard);
+        if (!shortlistlastcard.isEmpty()) {
+            while (!shortlistlastcard.isEmpty()) {
+                Card firstCard = shortlistlastcard.remove(0); // Prend le premier élément et le retire de la liste
+               int  i=GameGestion.inWichRow(firstCard,listlastcardontable);
+               listlastcardontable.set(i,firstCard);
+            }
+        }
     }
 }

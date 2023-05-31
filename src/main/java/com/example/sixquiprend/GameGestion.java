@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameGestion {
-    public int inWichRow(Card cardToPlace, List<Card> cards){
+    public static int inWichRow(Card cardToPlace, List<Card> cards){
         //Deux sélections s'opère : une première qui élimine les colonnes qui sont impossible car la valeur de la carte
         //à placer est inférieur à la valuer de la dernière carte. La deuxième pour détemrminer avec laquelle des restantes
         //il y a la plus petite des marges
