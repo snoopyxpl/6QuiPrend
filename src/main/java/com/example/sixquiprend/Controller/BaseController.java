@@ -35,7 +35,7 @@ public class BaseController {
         try {return new Image(Objects.requireNonNull(HelloApplication.class.getResource(path)).openStream());}
         catch (IOException | NullPointerException | IllegalArgumentException ignored) {
             System.out.println("Erreur d'affichage : " + path);
-            return BaseController.setAnImage("images/background/qrCode_rules.PNG");
+            return BaseController.setAnImage("Images/error.png");
         }
     }
 

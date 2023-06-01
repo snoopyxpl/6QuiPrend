@@ -174,7 +174,7 @@
             <Image url="@Images/dashedImage.png" />
          </image>
       </ImageView>
-      <Label fx:id="currentPlayerName" alignment="CENTER" layoutX="436.0" layoutY="568.0" prefHeight="17.0" prefWidth="298.0" text="Current player name">
+      <Label fx:id="currentPlayerName" alignment="CENTER" layoutX="366.0" layoutY="561.0" prefHeight="17.0" prefWidth="298.0" text="Current player name">
          <font>
             <Font name="Impact" size="24.0" />
          </font>
@@ -271,7 +271,7 @@
          <children>
             <ImageView fx:id="lastIma1" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="47.0" onMouseClicked="#onImageClick" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <image>
                   <Image url="@Images/dashedImage.png" />
@@ -288,7 +288,7 @@
          <children>
             <ImageView fx:id="lastIma2" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="47.0" onMouseClicked="#onImageClick" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <image>
                   <Image url="@Images/dashedImage.png" />
@@ -305,7 +305,7 @@
          <children>
             <ImageView fx:id="lastIma3" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="48.0" onMouseClicked="#onImageClick" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <image>
                   <Image url="@Images/dashedImage.png" />
@@ -322,7 +322,7 @@
          <children>
             <ImageView fx:id="lastIma4" fitHeight="118.0" fitWidth="70.0" layoutX="27.0" layoutY="47.0" onMouseClicked="#onImageClick" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <image>
                   <Image url="@Images/dashedImage.png" />

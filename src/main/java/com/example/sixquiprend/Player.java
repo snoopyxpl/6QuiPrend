@@ -86,4 +86,7 @@ public class Player {
     public void setHand(List<Card> hand) {
         this.hand = hand;
     }
+    public void playACard(Card cardPlayed){
+        hand.removeIf(card -> card.equals(cardPlayed));
+    }
 }

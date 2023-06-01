@@ -8,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HelloController extends BaseController{
     @FXML
     private Slider sliderNbPlayers;
@@ -19,6 +22,8 @@ public class HelloController extends BaseController{
 
     @FXML
     private Button Play;
+    @FXML
+    Button skipButton;
     @FXML
     public void onPlayClick(){
         System.out.println(sliderNbPlayers.getValue());
@@ -93,4 +98,27 @@ public class HelloController extends BaseController{
 
 //    @FXML
 //    protected void exitGame() {((Stage) stageAP.getScene().getWindow()).close();}
+
+    public  void onSkipClick(){
+        Game.startNewGame();
+        Game.option.setNbPlayer((int) sliderNbPlayers.getValue());
+        Game.option.setBotActivated(CheckBoxBot.isSelected());
+        int nbPlayer = Game.option.getNbPlayer();
+        String n1="Saïd";
+        String n2="Thibaud";
+        String n3="Nico";
+        String n4="Charles";
+        List<String> listTestName=new ArrayList<>();
+        listTestName.add(n1);
+        listTestName.add(n2);
+        listTestName.add(n3);
+        listTestName.add(n4);
+        for (int i=0;i<=nbPlayer-1;i++){
+            Game.option.addPlayerToList(listTestName.get(i),i,new ArrayList<>());
+        }
+        Game.option.dealCards();
+        Game.option.shorthand();
+        System.out.println(Game.option.getPlayerList());
+        loadPage("GameBoard");
+    }
 }

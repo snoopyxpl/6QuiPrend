@@ -2,6 +2,7 @@ package com.example.sixquiprend.Controller;
 
 import com.example.sixquiprend.Game;
 import com.example.sixquiprend.Items.Card;
+import com.example.sixquiprend.Player;
 import com.example.sixquiprend.Timer;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -26,6 +27,8 @@ public class GameController extends BaseController{
     private ImageView cardMovement;
     @FXML
     private Label currentPlayerName;
+    private int currentPlayer=Game.option.getCurrentPlayer();
+    private Map<Image,Card> cardBaseImage = Game.option.getCardBaseImage();
     @FXML
     private ImageView col1Im1, col1Im2,col1Im3, col1Im4,col1Im5,col1Im6;
     @FXML
@@ -49,6 +52,7 @@ public class GameController extends BaseController{
     private Button validate;
     @FXML
     private Button quitter;
+    private List<Card> currentPlayerHand;
 
     @FXML
     private ImageView CplayerCard1,CplayerCard2,CplayerCard3,CplayerCard4,CplayerCard5,CplayerCard6,CplayerCard7,CplayerCard8,CplayerCard9,CplayerCard10;
@@ -57,11 +61,14 @@ public class GameController extends BaseController{
     @FXML
     private ImageView CplayerCardRef;
     @FXML
-    private ImageView currentImageOnClick;
+    private ImageView currentImageViewOnClick;
+    private String currentCardOnClick;
     private int i;
+    private Map<Integer, Player> playerMap = Game.option.getPlayerBaseNum();
 
     private final List<ImageView> ImageDeck=new ArrayList<>();
     private Map<String, ImageView> imageDeck = new HashMap<>();
+    private Map<Image,Card> cardBaseImageController = new HashMap<>();
     public void onLeafClick(){
         loadPage("Accueil");
     }
@@ -83,12 +90,14 @@ public class GameController extends BaseController{
     public void printDeckPlayer(List<Card> deck){
         int lenDeck = deck.size();
         for (int i=0;i<=lenDeck-1;i++){
-            int Num = deck.get(i).getValue();
-            ImageView imageView = imageDeck.get("CplayerCard" + (i + 1));
-            if (imageView != null) {
-                //imageView.setImage(setAnImage(path));
-                printImage(Num,imageView);
-            }
+            int num = deck.get(i).getValue();
+            ImageView imageViewContainer = imageDeck.get("CplayerCard" + (i + 1));
+            String numString = Game.option.IntToString(num);
+            imageViewContainer.setId(numString);
+            //System.out.println(imageViewContainer.getId());
+            Image imageCard = deck.get(i).getImage();
+            //imageView.setImage(setAnImage(path));
+            printImage(imageCard,imageViewContainer);
         }
     }
     public void addCardOnBoard(int colNumber,Card card){
@@ -114,10 +123,10 @@ public class GameController extends BaseController{
                 if (i==0){
                     resetImageSize(CplayerCard1);
                 }else{
-                    resetImageSize(imageDeck.get(currentImageOnClick));
+                    resetImageSize(imageDeck.get(currentImageViewOnClick));
                 }
                 //currentImageOnClick = entry.getKey();
-                bigSizeImage(imageDeck.get(currentImageOnClick));
+                bigSizeImage(imageDeck.get(currentImageViewOnClick));
                 System.out.println("Salut");
                 i+=1;
             });
@@ -132,9 +141,10 @@ public class GameController extends BaseController{
             if (i==0){
                 resetImageSize(CplayerCard1);
             }else{
-                resetImageSize(currentImageOnClick);
+                resetImageSize(currentImageViewOnClick);
             }
-            currentImageOnClick= imageView;
+            currentImageViewOnClick=imageView;
+            currentCardOnClick=currentImageViewOnClick.getId();
             bigSizeImage(imageView);
             //System.out.println("Salut");
             i+=1;
@@ -187,32 +197,41 @@ public class GameController extends BaseController{
     }
     @FXML
     public void initialize(){
+        System.out.println(Game.option.getPlayerList());
         fillImageDeck();
+        Game.option.initialization();
+        Game.option.makeHashMapCardImage();
+        cardBaseImageController = Game.option.getCardBaseImage();
+        System.out.println(Game.option.getCardBaseImage());
+        //initialisation prêt à faire démarrer le premier joueur
+        Game.option.setCurrentPlayer(0);
+        //List<Card> currentPlayerHand =   playerMap.get(Game.option.getCurrentPlayer()).getHand();
+        newTurn();
         //ImageDeckID();
-        int Ncol1Im1 = Game.option.giveCardRandom();
-        String path = "cards/"+Game.option.IntToString(Ncol1Im1)+".png";
-        printImage(Ncol1Im1,col1Im1);
-        //col1Im1.setImage(setAnImage("cards/"+Game.option.IntToString(Ncol1Im1)+".png"));
-        int Ncol2Im1 = Game.option.giveCardRandom();
-        printImage(Ncol2Im1,col2Im1);
-        int Ncol3Im1 = Game.option.giveCardRandom();
-        printImage(Ncol3Im1,col3Im1);
-        int Ncol4Im1 = Game.option.giveCardRandom();
-        printImage(Ncol4Im1,col4Im1);
-        printImage(55,lastIma1);
-
-        //test unitaire de la fonction affichage du deck du current player
-        List<Card> TestCardList = new ArrayList<>();
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
-
-
-        printDeckPlayer(TestCardList);
+//        int Ncol1Im1 = Game.option.giveCardRandom();
+//        String path = "cards/"+Game.option.IntToString(Ncol1Im1)+".png";
+//        printImage(Ncol1Im1,col1Im1);
+//        //col1Im1.setImage(setAnImage("cards/"+Game.option.IntToString(Ncol1Im1)+".png"));
+//        int Ncol2Im1 = Game.option.giveCardRandom();
+//        printImage(Ncol2Im1,col2Im1);
+//        int Ncol3Im1 = Game.option.giveCardRandom();
+//        printImage(Ncol3Im1,col3Im1);
+//        int Ncol4Im1 = Game.option.giveCardRandom();
+//        printImage(Ncol4Im1,col4Im1);
+//        printImage(55,lastIma1);
+//
+//        //test unitaire de la fonction affichage du deck du current player
+//        List<Card> TestCardList = new ArrayList<>();
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//        TestCardList.add(0,new Card(Game.option.giveCardRandom(),1));
+//
+//
+//        printDeckPlayer(TestCardList);
 
     }
     @FXML
@@ -220,31 +239,76 @@ public class GameController extends BaseController{
 
         //CplayerCard1.toFront();
     }
+    public void initializeCountClick(){
+        i=0;
+    }
+    public void newTurn(){
+        System.out.println("Next tour");
+        currentPlayerHand = Game.option.getPlayerList().get(Game.option.getCurrentPlayer()).getHand();
+        printDeckPlayer(currentPlayerHand);
+        //System.out.println(Game.option.getPlayerList().get(Game.option.getCurrentPlayer()).getName());
+        System.out.println("Hand du premier joueur "+currentPlayerHand);
+        currentPlayerName.setText("A votre tour : "+playerMap.get(Game.option.getCurrentPlayer()).getName());
+    }
 
     public void onValidateClick(){
         //Réinitialiser le conteur i (resetImage)
-        i=0;
-        System.out.println("Image clicked confirmed");
-        CplayerCard1.toFront();
-        System.out.println("Dans validate Click");
+        resetImageSize(currentImageViewOnClick);
+        initializeCountClick();
+
+//        System.out.println("Image clicked confirmed");
+//        CplayerCard1.toFront();
+//        System.out.println("Dans validate Click");
+        Game.option.endTurnPlayer(selectHandCard());
+        //System.out.println(currentCardOnClick);
+        //System.out.println(selectHandCard());
+        //System.out.println("expression longue");
+        //System.out.println(card.get(currentImageOnClick));
+        newTurn();
+
+
         //translateCard(CplayerCard1,lastIma1);
-        translateCard(currentImageOnClick,lastIma2);
-        resetImageSize(currentImageOnClick);
         //translateCard(lastIma1,col2Im2);
-        System.out.println(currentImageOnClick);
+        //System.out.println(currentImageOnClick);
         //translateCard(lastIma2,CplayerCard2);
 //        col1Im1.setFitHeight(200.0);
 //        col1Im1.setFitWidth(100.0);
         //removeImage(col1Im1);
         //translateCard(CplayerCard2,578,-490,1.0);
+
+
+        //Exemple translation
+//        translateCard(currentImageOnClick,lastIma2);
+//        resetImageSize(currentImageOnClick);
+    }
+    public Card selectHandCard(){
+        System.out.println("currentPlayerHand "+currentPlayerHand);
+        Card card;
+        Card defCard = null;
+        int count =0;
+        //System.out.println("dans selectHand");
+        //System.out.println(Integer.parseInt(currentCardOnClick));
+        int sizeHand =  currentPlayerHand.size();
+        System.out.println("Taille hand "+sizeHand);
+        for (int k=0;k<sizeHand;k++){
+            card = currentPlayerHand.get(k);
+            System.out.println(Game.option.IntToString(card.getValue())+"=="+currentCardOnClick);
+            if (card.getValue()==Integer.parseInt(currentCardOnClick)){
+                defCard= card;
+            }
+            count++;
+        }
+        System.out.println("Compteur "+count);
+        return defCard;
     }
 
     //Faire deux fonctions élémentaires : qui affiche une carte et qui enlève une carte (et donc remet l'ancienne image)
-    public void printImage(int Num, ImageView imageView){
-        imageView.setImage(setAnImage("cards/"+Game.option.IntToString(Num)+".png"));
-        imageView.setOpacity(1);
-        onImageDeckMouseClick(imageView);
-        imageView.setCursor(Cursor.HAND);
+    public void printImage(Image imageCard, ImageView imageViewContainer){
+        //imageView.setImage(setAnImage("cards/"+Game.option.IntToString(Num)+".png").getImage());
+        imageViewContainer.setImage(imageCard);
+        imageViewContainer.setOpacity(1);
+        onImageDeckMouseClick(imageViewContainer);
+        imageViewContainer.setCursor(Cursor.HAND);
     }//Ensuite, à toi de te démerder pour faire le path avant
     public void removeImage(ImageView imageView){
         imageView.setImage(setAnImage("Images/dashedImage.png"));

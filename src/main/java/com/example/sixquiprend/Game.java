@@ -1,6 +1,8 @@
 package com.example.sixquiprend;
 
 import com.example.sixquiprend.Items.Card;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.*;
 
@@ -88,12 +90,38 @@ public class Game {
     GameGestion gameGestion = new GameGestion();
     private List<Player> playerList=new ArrayList<>();
     private Map<Integer , Player> playerBaseNum = new HashMap<>();
+    private Map<Image,Card> cardBaseImage = new HashMap<>();
+
+    public Map<Image, Card> getCardBaseImage() {
+        return cardBaseImage;
+    }
+
+    public void setCardBaseImage(Map<Image, Card> cardBaseImage) {
+        this.cardBaseImage = cardBaseImage;
+    }
+
+    public void makeHashMapCardImage(){
+        for (Card card : deck){
+            cardBaseImage.put(card.getImage(),card);
+        }
+    }
+
+
+
+    public Map<Integer, Player> getPlayerBaseNum() {
+        return playerBaseNum;
+    }
+
+    public void setPlayerBaseNum(Map<Integer, Player> playerBaseNum) {
+        this.playerBaseNum = playerBaseNum;
+    }
+
     private List<Card> lastCardBoardList = new ArrayList<>();
 
 
     public void addPlayerToList(String name,int numPlayer, List<Card> hand){
         Player player = new Player(name,numPlayer,hand);
-        playerList.add(0,player);
+        playerList.add(player);
     }
 
     public int getCurrentPlayer() {
@@ -133,13 +161,19 @@ public class Game {
     }
 
 
-    public void endTurnPlayer(Player lastPlayer, Card cardPlayed){
+    public void endTurnPlayer(Card cardPlayed){
+        Player lastPlayer = playerList.get(currentPlayer);
         isGameClosed = lastPlayer.isGameLoose();
         if (isGameClosed){
             //controller
         }
         lastPlayer.setLastCard(cardPlayed);
-        currentPlayer++;
+        lastPlayer.playACard(cardPlayed);
+        if (currentPlayer<nbPlayer-1){
+            currentPlayer++;
+        }else{
+            currentPlayer=0;
+        }
     }
     public void makeHashMapPlayer(){
         for (Player player : playerList){

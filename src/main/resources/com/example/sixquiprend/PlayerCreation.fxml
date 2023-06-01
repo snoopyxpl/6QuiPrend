@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="stageAP" maxHeight="800.0" maxWidth="1170.0" minWidth="1170.0" prefHeight="800.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sixquiprend.Controller.PlayerCreationController">
@@ -22,15 +22,6 @@
       <Label fx:id="currentPlayerName1" alignment="CENTER" layoutX="403.0" layoutY="39.0" prefHeight="38.0" prefWidth="382.0" text="Configuration de la partie">
          <font>
             <Font name="Impact" size="30.0" />
-         </font>
-      </Label>
-      <Slider fx:id="sliderNbeef" layoutX="396.0" layoutY="457.0" min="50.0" prefHeight="50.0" prefWidth="395.0" showTickLabels="true" showTickMarks="true">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Slider>
-      <Label alignment="CENTER" layoutX="461.0" layoutY="409.0" prefHeight="30.0" prefWidth="266.0" text="Nombre de tête de boeuf maximum">
-         <font>
-            <Font name="Impact" size="18.0" />
          </font>
       </Label>
       <Button fx:id="playButton" layoutX="717.0" layoutY="622.0" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Jouer" textFill="WHITE">
@@ -55,47 +46,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Pane layoutX="26.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
-         <children>
-            <Label fx:id="labelPlayerName1" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName1">
-               <font>
-                  <Font name="Impact" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="fieldPlayerName1" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
-         </children>
-      </Pane>
-      <Pane layoutX="309.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
-         <children>
-            <Label fx:id="labelPlayerName2" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName2">
-               <font>
-                  <Font name="Impact" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="fieldPlayerName2" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
-         </children>
-      </Pane>
-      <Pane layoutX="612.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
-         <children>
-            <Label fx:id="labelPlayerName3" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName3">
-               <font>
-                  <Font name="Impact" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="fieldPlayerName3" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
-         </children>
-      </Pane>
-      <Pane layoutX="906.0" layoutY="155.0" prefHeight="200.0" prefWidth="249.0">
-         <children>
-            <Label fx:id="labelPlayerName4" alignment="CENTER" layoutX="-31.0" layoutY="14.0" prefHeight="29.0" prefWidth="312.0" text="PlayerName4">
-               <font>
-                  <Font name="Impact" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="fieldPlayerName4" layoutX="20.0" layoutY="50.0" prefHeight="37.0" prefWidth="211.0" />
-         </children>
-      </Pane>
-      <Button fx:id="okPlayerName" layoutX="520.0" layoutY="317.0" mnemonicParsing="false" onAction="#onOkPlayerNameButtonClick" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Valider les prénoms" textFill="WHITE">
+      <Button fx:id="okPlayerName" layoutX="526.0" layoutY="536.0" mnemonicParsing="false" onAction="#onOkPlayerNameButtonClick" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="Valider les prénoms" textFill="WHITE">
          <font>
             <Font name="Impact" size="12.0" />
          </font>
@@ -106,10 +57,77 @@
             <DropShadow />
          </effect>
       </Button>
-      <Label fx:id="labelError" alignment="CENTER" layoutX="495.0" layoutY="270.0" prefHeight="17.0" prefWidth="185.0" textFill="RED">
+      <VBox fx:id="vboxNamePlayer" layoutX="532.0" layoutY="139.0" prefHeight="251.0" prefWidth="259.0">
+         <children>
+            <TextField fx:id="fieldPlayerName1" prefHeight="37.0" prefWidth="211.0" style="-fx-background-color: #D#6543212B48C;" visible="false">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="fieldPlayerName2" prefHeight="37.0" prefWidth="211.0" visible="false">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="fieldPlayerName3" prefHeight="37.0" prefWidth="211.0" visible="false">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="fieldPlayerName4" prefHeight="37.0" prefWidth="211.0" visible="false" />
+         </children>
+      </VBox>
+      <VBox fx:id="vboxLabelNamePlayer" layoutX="367.0" layoutY="136.0" prefHeight="285.0" prefWidth="146.0">
+         <children>
+            <Label fx:id="labelPlayerName1" alignment="CENTER" prefHeight="29.0" prefWidth="312.0" text="PlayerName1" visible="false">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="35.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="labelPlayerName2" alignment="CENTER" prefHeight="29.0" prefWidth="312.0" text="PlayerName2" visible="false">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="37.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="labelPlayerName3" alignment="CENTER" prefHeight="29.0" prefWidth="312.0" text="PlayerName3" visible="false">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="38.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="labelPlayerName4" alignment="CENTER" prefHeight="29.0" prefWidth="312.0" text="PlayerName4" visible="false">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <Label fx:id="labelError" alignment="CENTER" layoutX="418.0" layoutY="471.0" prefHeight="18.0" prefWidth="352.0" textFill="RED">
          <font>
             <Font name="Impact" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="skipButton" layoutX="945.0" layoutY="464.0" mnemonicParsing="false" onAction="#onSkipClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="SkipTest" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

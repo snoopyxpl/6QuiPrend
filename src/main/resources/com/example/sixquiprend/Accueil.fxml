@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="811.0" fitWidth="1210.0" layoutX="-30.0" layoutY="-8.0" pickOnBounds="true">
          <image>
-            <Image url="@Images/fond.png" />
+            <Image url="@Images/fondGame.png" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -23,7 +23,7 @@
       </ImageView>
       <ImageView fitHeight="462.0" fitWidth="544.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/logo.png" />
+            <Image url="@Images/logo-removebg-preview.png" />
          </image>
       </ImageView>
       <Button fx:id="Play" layoutX="483.0" layoutY="675.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="96.0" prefWidth="238.0" style="-fx-background-color: #8a2be2;" text="Démarrer" textFill="WHITE">
@@ -56,5 +56,16 @@
             <Font name="Impact" size="20.0" />
          </font>
       </Label>
+      <Button fx:id="skipButton" layoutX="955.0" layoutY="474.0" mnemonicParsing="false" onAction="#onSkipClick" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #8a2be2;" text="SkipTest" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
