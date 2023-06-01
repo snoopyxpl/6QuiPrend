@@ -69,11 +69,6 @@ public class Game {
         this.nbPlayer = nbPlayer;
     }
 
-    public int giveCardRandom(){
-        //for (int i=1;i<=4;i++){
-        int firstCard = random.nextInt(104)+1;
-        return firstCard;
-    }
     public String IntToString(int number){
         String nombreEnString = Integer.toString(number);
         return nombreEnString;

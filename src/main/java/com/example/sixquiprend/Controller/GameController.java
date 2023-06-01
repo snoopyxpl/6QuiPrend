@@ -89,16 +89,23 @@ public class GameController extends BaseController{
     //Faire fonction qui prend comme argument une liste de carte et qui l'affiche
     public void printDeckPlayer(List<Card> deck){
         int lenDeck = deck.size();
-        for (int i=0;i<=lenDeck-1;i++){
-            System.out.println("i  est "+i);
-            int num = deck.get(i).getValue();
-            ImageView imageViewContainer = imageDeck.get("CplayerCard" + (i + 1));
+        System.out.println("lenDeck "+lenDeck);
+        for (int c=0;c<=lenDeck-1;c++){
+            System.out.println("c  est "+c);
+            int num = deck.get(c).getValue();
+            ImageView imageViewContainer = imageDeck.get("CplayerCard" + (c + 1));
             String numString = Game.option.IntToString(num);
             imageViewContainer.setId(numString);
             //System.out.println(imageViewContainer.getId());
-            Image imageCard = deck.get(i).getImage();
+            Image imageCard = deck.get(c).getImage();
+            System.out.println("Id imageView "+imageViewContainer.getId());
+            System.out.println("numString "+numString);
+            System.out.println("nb tête de beef "+deck.get(c).getBeefhead());
             //imageView.setImage(setAnImage(path));
-            printImage(imageCard,imageViewContainer);
+            if (imageViewContainer!=null){
+                printImage(imageCard,imageViewContainer);
+            }
+
         }
     }
     public void addCardOnBoard(int colNumber,Card card){
@@ -253,6 +260,7 @@ public class GameController extends BaseController{
     }
 
     public void onValidateClick(){
+        removeImage(currentImageViewOnClick);
         //Réinitialiser le conteur i (resetImage)
         resetImageSize(currentImageViewOnClick);
         initializeCountClick();
@@ -261,7 +269,6 @@ public class GameController extends BaseController{
 //        CplayerCard1.toFront();
 //        System.out.println("Dans validate Click");
         Game.option.endTurnPlayer(selectHandCard());
-
         //System.out.println(currentCardOnClick);
         //System.out.println(selectHandCard());
         //System.out.println("expression longue");
@@ -301,6 +308,7 @@ public class GameController extends BaseController{
             count++;
         }
         System.out.println("Compteur "+count);
+        System.out.println("currentImageViewOnclick"+currentImageViewOnClick);
         return defCard;
     }
 
