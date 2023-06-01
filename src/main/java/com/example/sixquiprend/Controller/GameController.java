@@ -90,6 +90,7 @@ public class GameController extends BaseController{
     public void printDeckPlayer(List<Card> deck){
         int lenDeck = deck.size();
         for (int i=0;i<=lenDeck-1;i++){
+            System.out.println("i  est "+i);
             int num = deck.get(i).getValue();
             ImageView imageViewContainer = imageDeck.get("CplayerCard" + (i + 1));
             String numString = Game.option.IntToString(num);
@@ -260,6 +261,7 @@ public class GameController extends BaseController{
 //        CplayerCard1.toFront();
 //        System.out.println("Dans validate Click");
         Game.option.endTurnPlayer(selectHandCard());
+
         //System.out.println(currentCardOnClick);
         //System.out.println(selectHandCard());
         //System.out.println("expression longue");

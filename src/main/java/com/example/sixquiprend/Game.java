@@ -169,6 +169,7 @@ public class Game {
         }
         lastPlayer.setLastCard(cardPlayed);
         lastPlayer.playACard(cardPlayed);
+        System.out.println("taille main "+playerBaseNum.get(currentPlayer).getHand().size());
         if (currentPlayer<nbPlayer-1){
             currentPlayer++;
         }else{
