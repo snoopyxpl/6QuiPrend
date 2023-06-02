@@ -15,6 +15,7 @@ public class Game {
     private boolean isGameClosed;
 
     private List<Card> deck, listlastcard, listlastcardontable;
+    private List<Integer> listplayerscore=new ArrayList<>();
 
     private List<List<Card>> table = new ArrayList<>(Arrays.asList(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
 
@@ -241,6 +242,14 @@ public class Game {
                 int i = GameGestion.inWichRow(firstCard, listlastcardontable);
                 listlastcardontable.set(i, firstCard);
             }
+        }
+    }
+    public void putscoreinlist(List<Player> playerList){
+
+        for (Player player : playerList){
+            int score= player.getNbBeefTot();
+            listplayerscore.add(score);
+
         }
     }
 }

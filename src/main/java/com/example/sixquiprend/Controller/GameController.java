@@ -91,7 +91,7 @@ public class GameController extends BaseController{
         imageDeck.put("CplayerCard8", CplayerCard8);
         imageDeck.put("CplayerCard9", CplayerCard9);
         imageDeck.put("CplayerCard10", CplayerCard10);
-        System.out.println("mdfk"+CplayerCard10);
+        System.out.println("mdfk "+CplayerCard10);
     }
 
 
@@ -365,4 +365,5 @@ public class GameController extends BaseController{
             tt.play();
 
     }
+
 }
