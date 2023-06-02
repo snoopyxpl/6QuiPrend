@@ -8,7 +8,7 @@ import java.util.List;
 public class Player {
     private String name;
     private int nbBeefTot;
-    private List<Card> hand=new ArrayList<>();
+    private List<Card> hand = new ArrayList<>();
     private Card lastCard;
     private int numPlayer;
 
@@ -28,11 +28,11 @@ public class Player {
         this.lastCard = lastCard;
     }
 
-    public Player(String name,int numPlayer,List<Card> hand) {
+    public Player(String name, int numPlayer, List<Card> hand) {
         this.name = name;
         this.nbBeefTot = 0;
-        this.numPlayer=numPlayer;
-        this.hand=hand;
+        this.numPlayer = numPlayer;
+        this.hand = hand;
 
     }
 
@@ -57,16 +57,18 @@ public class Player {
     }
 
     public void setNbBeefTot(int nbBeefTot) {
-        this.nbBeefTot = nbBeefTot;
+        this.nbBeefTot += nbBeefTot;
     }
-    public boolean isGameLoose(){
-        if (nbBeefTot>=Game.option.getNbBeefToLoose()){
+
+    public boolean isGameLoose() {
+        if (nbBeefTot >= Game.option.getNbBeefToLoose()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public void addtohand(Card card){
+
+    public void addtohand(Card card) {
         this.hand.add(card);
     }
 
@@ -86,7 +88,8 @@ public class Player {
     public void setHand(List<Card> hand) {
         this.hand = hand;
     }
-    public void playACard(Card cardPlayed){
+
+    public void playACard(Card cardPlayed) {
         hand.removeIf(card -> card.equals(cardPlayed));
     }
 }

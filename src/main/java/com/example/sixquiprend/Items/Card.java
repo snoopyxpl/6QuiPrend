@@ -26,7 +26,7 @@ public class Card {
         this.value = value;
         this.beefhead = beefhead;
         this.image = image;
-        this.backSide=new Image(Objects.requireNonNull(HelloApplication.class.getResource("cards/backside.png")).openStream());
+        this.backSide = new Image(Objects.requireNonNull(HelloApplication.class.getResource("cards/backside.png")).openStream());
     }
 
     public static List<Card> generateDeck() throws IOException {
@@ -71,13 +71,14 @@ public class Card {
 
     public static Image setAnImage(int num) {
         try {
-            return new Image(Objects.requireNonNull(HelloApplication.class.getResource("cards/"+IntToString(num)+".png")).openStream());
+            return new Image(Objects.requireNonNull(HelloApplication.class.getResource("cards/" + IntToString(num) + ".png")).openStream());
         } catch (IOException | NullPointerException | IllegalArgumentException ignored) {
             System.out.println("Erreur d'affichage : " + IntToString(num));
             return BaseController.setAnImage("Images/error.png");
         }
     }
-    public static String IntToString(int number){
+
+    public static String IntToString(int number) {
         String nombreEnString = Integer.toString(number);
         return nombreEnString;
     }
