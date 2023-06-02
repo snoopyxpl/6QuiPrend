@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class HelloController extends BaseController{
     @FXML
     Button skipButton;
     @FXML
-    public void onPlayClick(){
+    public void onPlayClick() throws IOException {
         System.out.println(sliderNbPlayers.getValue());
         if (!CheckBoxBot.isSelected() && sliderNbPlayers.getValue()==1){
             errorAlone.setText("Vous ne pouvez pas jouer tout seul !");
@@ -99,7 +100,7 @@ public class HelloController extends BaseController{
 //    @FXML
 //    protected void exitGame() {((Stage) stageAP.getScene().getWindow()).close();}
 
-    public  void onSkipClick(){
+    public  void onSkipClick() throws IOException {
         Game.startNewGame();
         Game.option.setNbPlayer((int) sliderNbPlayers.getValue());
         Game.option.setBotActivated(CheckBoxBot.isSelected());

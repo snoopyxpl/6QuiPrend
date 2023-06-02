@@ -53,7 +53,7 @@ public class CardMergeSorter {
     }
     public static void main(String[] args) {
         // Exemple d'utilisation du tri fusion
-        Game.startNewGame();
+        //Game.startNewGame();
         List<Card> deck = Game.option.getDeck();
 
         System.out.println("Avant le tri :");

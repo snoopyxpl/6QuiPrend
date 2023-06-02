@@ -16,18 +16,20 @@ public class Card {
     private int beefhead;
     private Image image;
 
+    private Image backSide;
 
     public int getValue() {
         return value;
     }
 
-    public Card(int value, int beefhead, Image image) {
+    public Card(int value, int beefhead, Image image) throws IOException {
         this.value = value;
         this.beefhead = beefhead;
         this.image = image;
+        this.backSide=new Image(Objects.requireNonNull(HelloApplication.class.getResource("cards/backside.png")).openStream());
     }
 
-    public static List<Card> generateDeck() {
+    public static List<Card> generateDeck() throws IOException {
         List<Card> deck = new ArrayList<>();
         for (int i = 1; i <= 104; i++) {
             if (i == 55) {

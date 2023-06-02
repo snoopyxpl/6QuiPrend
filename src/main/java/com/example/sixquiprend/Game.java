@@ -4,6 +4,7 @@ import com.example.sixquiprend.Items.Card;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Game {
@@ -19,7 +20,7 @@ public class Game {
 
 
     //indique si la partie est terminé et qu'il ne reste plus qu'à compter les têtes de boeufs
-    public List<Card> shuffle() {
+    public List<Card> shuffle() throws IOException {
         deck = Card.generateDeck();
         Collections.shuffle(deck);
         return deck;
@@ -45,7 +46,7 @@ public class Game {
     }
 
     public static Game option;
-    public Game() {
+    public Game() throws IOException {
         this.deck = shuffle();
     }
     public boolean isBotActivated() {
@@ -55,7 +56,7 @@ public class Game {
     public void setBotActivated(boolean botActivated) {
         isBotActivated = botActivated;
     }
-    public static void startNewGame() {
+    public static void startNewGame() throws IOException {
         // A chaque fois qu''on retourne sur le menu principal, on remet les options du jeu à zero
         Game.option = null;
         Game.option = new Game();
@@ -86,6 +87,7 @@ public class Game {
     private List<Player> playerList=new ArrayList<>();
     private Map<Integer , Player> playerBaseNum = new HashMap<>();
     private Map<Image,Card> cardBaseImage = new HashMap<>();
+    private List<Card> lastCardList = new ArrayList<>();
 
     public Map<Image, Card> getCardBaseImage() {
         return cardBaseImage;
@@ -151,8 +153,9 @@ public class Game {
         this.playerList = playerList;
     }
     public void initialization(){
-        makeHashMapPlayer();
+        listlastcard = new ArrayList<>();
 
+        //makeHashMapPlayer();
     }
 
 
@@ -164,10 +167,12 @@ public class Game {
         }
         lastPlayer.setLastCard(cardPlayed);
         lastPlayer.playACard(cardPlayed);
-        System.out.println("taille main "+playerBaseNum.get(currentPlayer).getHand().size());
+        System.out.println("taille main "+playerList.get(currentPlayer).getHand().size());
+        setplayerlastcard(lastPlayer,cardPlayed);
         if (currentPlayer<nbPlayer-1){
             currentPlayer++;
         }else{
+            System.out.println("Tour terminé");
             currentPlayer=0;
         }
     }
@@ -211,7 +216,12 @@ public class Game {
 
     public void setplayerlastcard(Player player,Card card){
         player.setLastCard(card);
-        listlastcard.add(card);
+        if (listlastcard.size()==nbPlayer){
+            listlastcard.remove(player.getNumPlayer());
+        }
+        listlastcard.add(player.getNumPlayer(),card);
+        System.out.println("Liste Last Card "+listlastcard);
+        System.out.println("lastCard du player "+player.getLastCard());
     }
     public void setOrderToPlaceCardOnTable() {
         List<Card> shortlistlastcard = CardMergeSorter.mergeSortByValue(listlastcard);

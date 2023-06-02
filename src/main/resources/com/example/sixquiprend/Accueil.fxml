@@ -21,12 +21,12 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="462.0" fitWidth="544.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="462.0" fitWidth="544.0" layoutX="381.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/logo-removebg-preview.png" />
          </image>
       </ImageView>
-      <Button fx:id="Play" layoutX="483.0" layoutY="675.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="96.0" prefWidth="238.0" style="-fx-background-color: #8a2be2;" text="Démarrer" textFill="WHITE">
+      <Button fx:id="Play" layoutX="466.0" layoutY="675.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="96.0" prefWidth="238.0" style="-fx-background-color: #8a2be2;" text="Démarrer" textFill="WHITE">
          <font>
             <Font name="Impact" size="36.0" />
          </font>
@@ -37,8 +37,8 @@
             <DropShadow />
          </effect>
       </Button>
-      <Slider fx:id="sliderNbPlayers" blockIncrement="1.0" layoutX="450.0" layoutY="496.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" prefHeight="105.0" prefWidth="307.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: transparent; -fx-cursor: hand;" value="1.0" />
-      <Label alignment="CENTER" layoutX="503.0" layoutY="483.0" prefHeight="17.0" prefWidth="198.0" text="Nombre de joueur">
+      <Slider fx:id="sliderNbPlayers" blockIncrement="1.0" layoutX="432.0" layoutY="498.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" prefHeight="105.0" prefWidth="307.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: transparent; -fx-cursor: hand;" value="1.0" />
+      <Label alignment="CENTER" layoutX="486.0" layoutY="485.0" prefHeight="17.0" prefWidth="198.0" text="Nombre de joueur">
          <font>
             <Font name="Impact" size="24.0" />
          </font>

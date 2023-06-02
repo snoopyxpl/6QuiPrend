@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class GameController extends BaseController{
     @FXML
     private ImageView lastIma1,lastIma2,lastIma3,lastIma4,lastIma1bot;
     @FXML
+    private HBox hboxLastCard;
+    @FXML
     private Label scorePlayer1,scorePlayer2,scorePlayer3,scorePlayer4;
     @FXML
     private Label labelSco1,labelSco2,labelSco3, labelSco4;
@@ -53,6 +56,9 @@ public class GameController extends BaseController{
     @FXML
     private Button quitter;
     private List<Card> currentPlayerHand;
+    @FXML
+    private Button nextPlayerButton;
+    private boolean isValidateClicked =false;
 
     @FXML
     private ImageView CplayerCard1,CplayerCard2,CplayerCard3,CplayerCard4,CplayerCard5,CplayerCard6,CplayerCard7,CplayerCard8,CplayerCard9,CplayerCard10;
@@ -60,6 +66,8 @@ public class GameController extends BaseController{
 
     @FXML
     private ImageView CplayerCardRef;
+    @FXML
+    private Label errorMsg;
     @FXML
     private ImageView currentImageViewOnClick;
     private String currentCardOnClick;
@@ -86,64 +94,26 @@ public class GameController extends BaseController{
     }
 
 
-    //Faire fonction qui prend comme argument une liste de carte et qui l'affiche
-    public void printDeckPlayer(List<Card> deck){
-        int lenDeck = deck.size();
-        System.out.println("lenDeck "+lenDeck);
-        for (int c=0;c<=lenDeck-1;c++){
-            System.out.println("c  est "+c);
-            int num = deck.get(c).getValue();
-            ImageView imageViewContainer = imageDeck.get("CplayerCard" + (c + 1));
-            String numString = Game.option.IntToString(num);
-            imageViewContainer.setId(numString);
-            //System.out.println(imageViewContainer.getId());
-            Image imageCard = deck.get(c).getImage();
-            System.out.println("Id imageView "+imageViewContainer.getId());
-            System.out.println("numString "+numString);
-            System.out.println("nb tête de beef "+deck.get(c).getBeefhead());
-            //imageView.setImage(setAnImage(path));
-            if (imageViewContainer!=null){
-                printImage(imageCard,imageViewContainer);
-            }
-
-        }
-    }
-    public void addCardOnBoard(int colNumber,Card card){
-        //fonction back pour déterminer si la carte rammasse le tas ...
-    }
-    //Faire la même pour afficher sur le plateau
-    public void printCardOnBoard(){
-
-    }
-    public void useCaseDeck(){
-        ImageView imageView = ImageDeck.get(0);
-        //ImageDeck.(0);
-    }
-    public void freeCaseDeck(int lastIndexIn){
-        for (int i =10-lastIndexIn;i>0;i--){
-
-        }
-    }
-    public void ImageDeckID(){
-        for (Map.Entry<String, ImageView> entry : imageDeck.entrySet()) {
-            ImageView imageView = entry.getValue();
-            imageView.setOnMouseClicked(event -> {
-                if (i==0){
-                    resetImageSize(CplayerCard1);
-                }else{
-                    resetImageSize(imageDeck.get(currentImageViewOnClick));
-                }
-                //currentImageOnClick = entry.getKey();
-                bigSizeImage(imageDeck.get(currentImageViewOnClick));
-                System.out.println("Salut");
-                i+=1;
-            });
-            imageView.setOnMouseDragOver(event ->{
-
-            });
-        }
-        System.out.println("intérieur de la fonction ImageDeckID");
-    }
+//    public void ImageDeckID(){
+//        for (Map.Entry<String, ImageView> entry : imageDeck.entrySet()) {
+//            ImageView imageView = entry.getValue();
+//            imageView.setOnMouseClicked(event -> {
+//                if (i==0){
+//                    resetImageSize(CplayerCard1);
+//                }else{
+//                    resetImageSize(imageDeck.get(currentImageViewOnClick));
+//                }
+//                //currentImageOnClick = entry.getKey();
+//                bigSizeImage(imageDeck.get(currentImageViewOnClick));
+//                System.out.println("Salut");
+//                i+=1;
+//            });
+//            imageView.setOnMouseDragOver(event ->{
+//
+//            });
+//        }
+//        System.out.println("intérieur de la fonction ImageDeckID");
+//    }
     public void onImageDeckMouseClick(ImageView imageView){
         imageView.setOnMouseClicked(event -> {
             if (i==0){
@@ -189,32 +159,18 @@ public class GameController extends BaseController{
         imageView.setY(0);
         //imageView.setOpacity(0.5);
     }
-
-    @FXML
-    public void onImageClick(){
-
-        //System.out.println("Image clicked confirmed");
-        //CplayerCard1.setImage(setAnImage("cards/1.png"));
-        //initializeBoard();
-        //translateCard(CplayerCard1,lastIma1);
-        //System.out.println(currentImageOnClick);
-        //System.out.println();
-
-        //timer.getTime(3000);
-
-    }
     @FXML
     public void initialize(){
         System.out.println(Game.option.getPlayerList());
         fillImageDeck();
         Game.option.initialization();
-        Game.option.makeHashMapCardImage();
-        cardBaseImageController = Game.option.getCardBaseImage();
-        System.out.println(Game.option.getCardBaseImage());
+        //Game.option.makeHashMapCardImage();
+        //cardBaseImageController = Game.option.getCardBaseImage();
+        //System.out.println(Game.option.getCardBaseImage());
         //initialisation prêt à faire démarrer le premier joueur
         Game.option.setCurrentPlayer(0);
         //List<Card> currentPlayerHand =   playerMap.get(Game.option.getCurrentPlayer()).getHand();
-        newTurn();
+        newPlayerTurn();
         //ImageDeckID();
 //        int Ncol1Im1 = Game.option.giveCardRandom();
 //        String path = "cards/"+Game.option.IntToString(Ncol1Im1)+".png";
@@ -242,38 +198,60 @@ public class GameController extends BaseController{
 //        printDeckPlayer(TestCardList);
 
     }
-    @FXML
-    public void onImage2Click(){
+    public void printDeckPlayer(List<Card> deck){
+        int lenDeck = deck.size();
+        System.out.println("lenDeck "+lenDeck);
+        for (int c=0;c<=lenDeck-1;c++){
+            System.out.println("c  est "+c);
+            int num = deck.get(c).getValue();
+            ImageView imageViewContainer = imageDeck.get("CplayerCard" + (c + 1));
+            String numString = Game.option.IntToString(num);
+            imageViewContainer.setId(numString);
+            //System.out.println(imageViewContainer.getId());
+            Image imageCard = deck.get(c).getImage();
+            System.out.println("Id imageView "+imageViewContainer.getId());
+            System.out.println("numString "+numString);
+            System.out.println("nb tête de beef "+deck.get(c).getBeefhead());
+            //imageView.setImage(setAnImage(path));
+            if (imageViewContainer!=null){
+                printImage(imageCard,imageViewContainer);
+            }
 
-        //CplayerCard1.toFront();
+        }
+    }
+
+    public void printLastCard(){
+        ImageView imageViewTarget = (ImageView) hboxLastCard.getChildren().get(Game.option.getCurrentPlayer());
+        System.out.println("CurrentPlayer"+Game.option.getCurrentPlayer());
+        System.out.println("class de hoxbox children : "+hboxLastCard.getChildren().get(Game.option.getCurrentPlayer()).getClass());
+        //Image imageTodeplace = lastCardToPrint.getImage();
+        translateCard(imageViewTarget,true);
     }
     public void initializeCountClick(){
         i=0;
     }
-    public void newTurn(){
+    public void newPlayerTurn(){
         System.out.println("Next tour");
         currentPlayerHand = Game.option.getPlayerList().get(Game.option.getCurrentPlayer()).getHand();
         printDeckPlayer(currentPlayerHand);
         //System.out.println(Game.option.getPlayerList().get(Game.option.getCurrentPlayer()).getName());
         System.out.println("Hand du premier joueur "+currentPlayerHand);
-        currentPlayerName.setText("A votre tour : "+playerMap.get(Game.option.getCurrentPlayer()).getName());
+        currentPlayerName.setText("A votre tour : "+ Game.option.getPlayerList().get(Game.option.getCurrentPlayer()).getName());
     }
 
     public void onValidateClick(){
-        removeImage(currentImageViewOnClick);
-        //Réinitialiser le conteur i (resetImage)
+        isValidateClicked=true;
+        errorMsg.setText("");
+        nextPlayerButton.setCursor(Cursor.HAND);
+        printLastCard();
         resetImageSize(currentImageViewOnClick);
-        initializeCountClick();
+        Game.option.endTurnPlayer(selectHandCard());
+        //removeImage(currentImageViewOnClick);
+        //Réinitialiser le conteur i (resetImage)
 
 //        System.out.println("Image clicked confirmed");
 //        CplayerCard1.toFront();
 //        System.out.println("Dans validate Click");
-        Game.option.endTurnPlayer(selectHandCard());
-        //System.out.println(currentCardOnClick);
-        //System.out.println(selectHandCard());
-        //System.out.println("expression longue");
-        //System.out.println(card.get(currentImageOnClick));
-        newTurn();
 
 
         //translateCard(CplayerCard1,lastIma1);
@@ -289,6 +267,23 @@ public class GameController extends BaseController{
         //Exemple translation
 //        translateCard(currentImageOnClick,lastIma2);
 //        resetImageSize(currentImageOnClick);
+    }
+    public void onEndTurnPlayerClick(){
+        if (isValidateClicked){
+            isValidateClicked=false;
+            nextPlayerButton.setCursor(Cursor.DEFAULT);
+            initializeCountClick();
+
+
+            //System.out.println(currentCardOnClick);
+            //System.out.println(selectHandCard());
+            //System.out.println("expression longue");
+            //System.out.println(card.get(currentImageOnClick));
+            resetImageSize(currentImageViewOnClick);
+            newPlayerTurn();
+        }else {
+            errorMsg.setText("Veuiller sélectionner une carte !");
+        }
     }
     public Card selectHandCard(){
         System.out.println("currentPlayerHand "+currentPlayerHand);
@@ -327,18 +322,21 @@ public class GameController extends BaseController{
         imageView.setCursor(Cursor.DEFAULT);
     }
 
-    public void translateCard(ImageView imageToDeplace,ImageView targetImageView) {
-        if (imageToDeplace!=null) {
+    public void translateCard(ImageView targetImageView, boolean isHide) {
+        ImageView imageViewToDeplace = currentImageViewOnClick;
+        //System.out.println("currentImageViewOnClick "+currentImageViewOnClick);
+        //if (imageViewToDeplace!=null) {
+
             // Retour la nouvelle carte du deck
             //CardDeckView.setImage(newCardDeck);
             // Image de la nouvelle Card
             //String pathImgGet = this.playerTurn.getCardInIsHandImgPath();
             //Image newRubbichImg = ControlleurBase.setAnImage(pathImgGet);
             // Deplace le cardMovement sur la position du deck selectionné
-            double posImgMoveX = imageToDeplace.getLocalToSceneTransform().getTx();
-            double posImgMoveY = imageToDeplace.getLocalToSceneTransform().getTy();
+            double posImgMoveX = imageViewToDeplace.getLocalToSceneTransform().getTx();
+            double posImgMoveY = imageViewToDeplace.getLocalToSceneTransform().getTy();
             // Met l'imageS de CardSelect et la rend visible
-            this.cardMovement.setImage(imageToDeplace.getImage());
+            this.cardMovement.setImage(imageViewToDeplace.getImage());
             this.cardMovement.setVisible(true);
             // Coordonnée de la carte cible
             double posTrashX = targetImageView.getLocalToSceneTransform().getTx();
@@ -352,14 +350,18 @@ public class GameController extends BaseController{
             tt.setToY(posTrashY - 500);
             cardMovement.toFront();
             tt.setOnFinished(event -> {
-                targetImageView.setImage(imageToDeplace.getImage());
+                if (isHide){
+                    targetImageView.setImage(setAnImage("cards/backside.png"));
+                }else{
+                    targetImageView.setImage(currentImageViewOnClick.getImage());
+                }
                 targetImageView.setOpacity(1);
                 cardMovement.setVisible(false);
                 //imageToDeplace.setImage(setAnImage("Images/dashedImage.png"));
-                removeImage(imageToDeplace);
+                removeImage(imageViewToDeplace);
                 //this.endTurn();
             });
             tt.play();
-        }
+
     }
 }
