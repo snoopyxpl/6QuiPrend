@@ -13,7 +13,7 @@ public class Game {
 
     private List<Card> deck,listlastcard,listlastcardontable;
 
-    private List<List<Card>> table = new ArrayList<>(Arrays.asList(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+    public List<List<Card>> table = new ArrayList<>(Arrays.asList(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
 
 
     //indique si la partie est terminé et qu'il ne reste plus qu'à compter les têtes de boeufs
@@ -92,7 +92,7 @@ public class Game {
 
 
     public void addPlayerToList(String name,int numPlayer, List<Card> hand){
-        Player player = new Player(name,numPlayer,hand);
+        Player player = new Player(name,numPlayer);
         playerList.add(0,player);
     }
 

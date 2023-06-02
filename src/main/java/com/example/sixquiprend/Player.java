@@ -28,7 +28,7 @@ public class Player {
         this.lastCard = lastCard;
     }
 
-    public Player(String name,int numPlayer,List<Card> hand) {
+    public Player(String name,int numPlayer) {
         this.name = name;
         this.nbBeefTot = 0;
         this.numPlayer=numPlayer;
