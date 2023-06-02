@@ -68,9 +68,9 @@ public class CardMergeSorter {
             System.out.println("Value: " + card.getValue() );
         }
         List<Player> nbtest = new ArrayList<>();
-        nbtest.add(new Player("michel",1,new ArrayList<>()));
-        nbtest.add(new Player("michel",2,new ArrayList<>()));
-        nbtest.add(new Player("michel",3,new ArrayList<>()));
+        nbtest.add(new Player("michel",1));
+        nbtest.add(new Player("michel",2));
+        nbtest.add(new Player("michel",3));
         Game.option.setPlayerList(nbtest);
         Game.option.dealCards();
         Game.option.shorthand();

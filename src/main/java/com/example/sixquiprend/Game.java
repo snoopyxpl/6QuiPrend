@@ -2,7 +2,6 @@ package com.example.sixquiprend;
 
 import com.example.sixquiprend.Items.Card;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.*;
@@ -117,7 +116,7 @@ public class Game {
 
 
     public void addPlayerToList(String name,int numPlayer, List<Card> hand){
-        Player player = new Player(name,numPlayer,hand);
+        Player player = new Player(name,numPlayer);
         playerList.add(player);
     }
 
@@ -232,5 +231,9 @@ public class Game {
                listlastcardontable.set(i,firstCard);
             }
         }
+    }
+
+    public List<Card>[] getTable() {
+        return new List[]{table};
     }
 }
