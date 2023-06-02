@@ -43,8 +43,9 @@ public class Saniel_AI extends Player {
             }
 
             // Si aucune carte ne peut être jouée sans risquer de prendre une ligne, chercher la carte optimale
+            // La carte optimale est la carte qui minimise la différence de valeur avec la carte la plus haute de chaque ligne
             for (List<Card> row : table) {
-                Card lastCardInRow = row.get(row.size() - 1);
+                Card lastCardInRow = row.get(row.size() - 1);   // Dernière carte de la ligne
                 int diff = card.getValue() - lastCardInRow.getValue();
                 if (diff > 0) {
                     int bull = row.size() == 5 ? countBulls(row) : 0;
@@ -58,15 +59,13 @@ public class Saniel_AI extends Player {
         }
 
         // Jouer la carte optimale, ou la carte de valeur la plus basse en cas d'égalité
-        if (optimalCard != null) {
+        if (optimalCard != null) {  // Si une carte optimale a été trouvée
             this.setLastCard(optimalCard);
             hand.remove(optimalCard);
         } else {
-            Card lowestCard = getLowestCard();
+            Card lowestCard = getLowestCard(); // Récupérer la carte de valeur la plus basse de sa main
             this.setLastCard(lowestCard);
             hand.remove(lowestCard);
-
-            // Ajouter la logique pour décider et prendre la ligne ici.
             int rowToTake = decideRowToTake();
             takeRow(rowToTake);
         }
@@ -75,8 +74,8 @@ public class Saniel_AI extends Player {
     // décider quelle ligne prendre
     private int decideRowToTake(){
         List<Card>[] table = this.game.getTable();
-        int minBulls = Integer.MAX_VALUE;  // Utiliser Integer.MAX_VALUE pour initialiser
-        int rowToTake = -1;  // Initialiser à -1 pour s'assurer qu'une ligne est bien choisie
+        int minBulls = Integer.MAX_VALUE; // Initialiser à la valeur maximale pour s'assurer qu'une ligne est bien choisie
+        int rowToTake = 0;
         for (int i = 0; i < table.length; i++) {
             List<Card> row = table[i];
             int bullsInRow = countBulls(row);
