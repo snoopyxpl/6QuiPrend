@@ -24,16 +24,19 @@ public class BaseController {
 
     protected void loadPage(String pageName) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(/*"fxml/"+ */pageName +".fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(/*"fxml/"+ */pageName + ".fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             ((Stage) stageAP.getScene().getWindow()).setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        catch (IOException e) {throw new RuntimeException(e);}
 
     }
+
     public static Image setAnImage(String path) {
-        try {return new Image(Objects.requireNonNull(HelloApplication.class.getResource(path)).openStream());}
-        catch (IOException | NullPointerException | IllegalArgumentException ignored) {
+        try {
+            return new Image(Objects.requireNonNull(HelloApplication.class.getResource(path)).openStream());
+        } catch (IOException | NullPointerException | IllegalArgumentException ignored) {
             System.out.println("Erreur d'affichage : " + path);
             return BaseController.setAnImage("Images/error.png");
         }

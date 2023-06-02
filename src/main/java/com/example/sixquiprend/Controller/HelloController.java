@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelloController extends BaseController{
+public class HelloController extends BaseController {
     @FXML
     private Slider sliderNbPlayers;
     @FXML
@@ -25,12 +25,13 @@ public class HelloController extends BaseController{
     private Button Play;
     @FXML
     Button skipButton;
+
     @FXML
     public void onPlayClick() throws IOException {
         System.out.println(sliderNbPlayers.getValue());
-        if (!CheckBoxBot.isSelected() && sliderNbPlayers.getValue()==1){
+        if (!CheckBoxBot.isSelected() && sliderNbPlayers.getValue() == 1) {
             errorAlone.setText("Vous ne pouvez pas jouer tout seul !");
-        }else{
+        } else {
 //            int nbPlayerTot;
 //            if (CheckBoxBot.isSelected()){
 //                nbPlayerTot = (int) (sliderNbPlayers.getValue()+1);
@@ -59,7 +60,6 @@ public class HelloController extends BaseController{
 //        // Joue une nouvelle musique
 //        Game.option.musiquePlayer.playMedia();
 //    }
-
 
 
 //    @FXML
@@ -100,22 +100,22 @@ public class HelloController extends BaseController{
 //    @FXML
 //    protected void exitGame() {((Stage) stageAP.getScene().getWindow()).close();}
 
-    public  void onSkipClick() throws IOException {
+    public void onSkipClick() throws IOException {
         Game.startNewGame();
         Game.option.setNbPlayer((int) sliderNbPlayers.getValue());
         Game.option.setBotActivated(CheckBoxBot.isSelected());
         int nbPlayer = Game.option.getNbPlayer();
-        String n1="Saïd";
-        String n2="Thibaud";
-        String n3="Nico";
-        String n4="Charles";
-        List<String> listTestName=new ArrayList<>();
+        String n1 = "Saïd";
+        String n2 = "Thibaud";
+        String n3 = "Nico";
+        String n4 = "Charles";
+        List<String> listTestName = new ArrayList<>();
         listTestName.add(n1);
         listTestName.add(n2);
         listTestName.add(n3);
         listTestName.add(n4);
-        for (int i=0;i<=nbPlayer-1;i++){
-            Game.option.addPlayerToList(listTestName.get(i),i,new ArrayList<>());
+        for (int i = 0; i <= nbPlayer - 1; i++) {
+            Game.option.addPlayerToList(listTestName.get(i), i, new ArrayList<>());
         }
         Game.option.dealCards();
         Game.option.shorthand();

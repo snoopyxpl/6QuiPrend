@@ -51,6 +51,7 @@ public class CardMergeSorter {
         }
 
     }
+
     public static void main(String[] args) {
         // Exemple d'utilisation du tri fusion
         //Game.startNewGame();
@@ -58,19 +59,19 @@ public class CardMergeSorter {
 
         System.out.println("Avant le tri :");
         for (Card card : deck) {
-            System.out.println("Value: " + card.getValue() );
+            System.out.println("Value: " + card.getValue());
         }
 
         //mergeSortByValue(deck);
 
         System.out.println("Après le tri :");
         for (Card card : deck) {
-            System.out.println("Value: " + card.getValue() );
+            System.out.println("Value: " + card.getValue());
         }
         List<Player> nbtest = new ArrayList<>();
-        nbtest.add(new Player("michel",1,new ArrayList<>()));
-        nbtest.add(new Player("michel",2,new ArrayList<>()));
-        nbtest.add(new Player("michel",3,new ArrayList<>()));
+        nbtest.add(new Player("michel", 1, new ArrayList<>()));
+        nbtest.add(new Player("michel", 2, new ArrayList<>()));
+        nbtest.add(new Player("michel", 3, new ArrayList<>()));
         Game.option.setPlayerList(nbtest);
         Game.option.dealCards();
         Game.option.shorthand();
