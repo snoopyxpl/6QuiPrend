@@ -6,64 +6,53 @@ import java.util.List;
 
 public class Saniel_AI extends Player {
     private Game game;
-    private int temoin;
-    private int nbBeefHeads;
+    private int maxDiff;
+    private int minBulls;
 
     public Saniel_AI(String name, int numPlayer, Game game) {
         super(name, numPlayer);
         this.game = game;
-        this.temoin = 105;
-        this.nbBeefHeads = 0;
+        this.maxDiff = 105;
+        this.minBulls = 30;
     }
 
     public int PlayTurn(Game game) {
-        // Analyse du jeu en cour
         List<Card> hand = this.getHand();
-        List<List<Card>> table = null;
-        for (List<Card> cards : this.game.table) {
-
-        }
-
-
-        // initialisation des variables temoin
-        int maxDiff = 105;
-        int minBulls = 30;
-        int minCards = 6;
+        List<Card>[] table = this.game.getTable();
         Card optimalCard = null;
 
-        //Essayer de jouer une carte sans ramasser une ligne
         for (Card card : hand) {
+            int maxCardInRow = 0;
+            // Analyse du jeu en cours
             for (List<Card> row : table) {
-                if (!row.isEmpty() && card.getValue() > row.get(row.size() - 1).getValue()
-                        && row.size() < 5) {
+                maxCardInRow = Math.max(maxCardInRow, row.get(row.size() - 1).getValue());
+                int bullsInRow = countBulls(row);
+                int cardsInRow = row.size();
+
+                // Essayer de jouer une carte sans ramasser une ligne
+                if (card.getValue() > maxCardInRow && cardsInRow < 5) {
                     this.setLastCard(card); // on joue la carte
                     hand.remove(card); // on retire la carte de la main
                     row.add(card); // on ajoute la carte à la ligne
                     return maxDiff;
                 }
+
+                // Mettre à jour les variables temoins
+                maxDiff = Math.min(maxDiff, card.getValue() - maxCardInRow);
+                minBulls = Math.min(minBulls, bullsInRow);
             }
-        }
 
-        // si aucune carte ne peut être jouée sans risquer de prendre une ligne,
-        // chercher la carte optimale
-
-        for (Card card : hand) {
+            // Si aucune carte ne peut être jouée sans risquer de prendre une ligne, chercher la carte optimale
             for (List<Card> row : table) {
-                Card lastCardInRow = row.get(row.size()-1);
+                Card lastCardInRow = row.get(row.size() - 1);
                 int diff = card.getValue() - lastCardInRow.getValue();
-                // si la carte peut être placé dans cette ligne
-
                 if (diff > 0) {
-                    // Si cette rangée doit être prise, calculez le nombre de têtes de bœuf
-                    int bull = row.size() ==5 ? countBulls(row):0;
-
-                    // si la carte est meilleure que la carte optimale actuelle, mettre à jour carte optimal
-                    if ((bull < minBulls) || (bull == minBulls && diff< maxDiff)) {
+                    int bull = row.size() == 5 ? countBulls(row) : 0;
+                    if ((bull < minBulls) || (bull == minBulls && diff < maxDiff)) {
                         maxDiff = diff;
                         minBulls = bull;
                         optimalCard = card;
                     }
-
                 }
             }
         }
@@ -80,11 +69,9 @@ public class Saniel_AI extends Player {
         return maxDiff;
     }
 
-
-    private int countBulls (List<Card>row){
-        int totalBulls=0;
-
-        for (Card card : row){
+    private int countBulls(List<Card> row) {
+        int totalBulls = 0;
+        for (Card card : row) {
             totalBulls += card.getBeefhead();
         }
         return totalBulls;
@@ -93,13 +80,11 @@ public class Saniel_AI extends Player {
     private Card getLowestCard() {
         List<Card> hand = this.getHand();
         Card lowestCard = hand.get(0);
-
         for (Card card : hand) {
             if (card.getValue() < lowestCard.getValue()) {
                 lowestCard = card;
             }
         }
         return lowestCard;
-
     }
 }

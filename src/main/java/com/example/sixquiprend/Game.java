@@ -91,7 +91,7 @@ public class Game {
     private List<Card> lastCardBoardList = new ArrayList<>();
 
 
-    public void addPlayerToList(String name,int numPlayer, List<Card> hand){
+    public void addPlayerToList(String name,int numPlayer){
         Player player = new Player(name,numPlayer);
         playerList.add(0,player);
     }
@@ -192,5 +192,9 @@ public class Game {
                listlastcardontable.set(i,firstCard);
             }
         }
+    }
+
+    public List<Card>[] getTable() {
+        return new List[]{table};
     }
 }
