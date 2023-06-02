@@ -88,7 +88,6 @@ public class Saniel_AI extends Player {
         return rowToTake;
     }
     // prendre une ligne
-    // prendre une ligne
     private void takeRow(int rowToTake) {
         List<Card>[] table = this.game.getTable();
         List<Card> row = table[rowToTake];
