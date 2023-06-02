@@ -298,7 +298,6 @@ public class GameController extends BaseController {
     public void onCheckClick() {
         placeLastCard();
         printScore();
-        newPlayerTurn();
     }
 
     public void onEndTurnPlayerClick() {
@@ -319,6 +318,7 @@ public class GameController extends BaseController {
             System.out.println("List Last Card" + Game.option.getListlastcard());
             returnCardFace();
             Game.option.getPlayerWithMatchingLastCardValue();
+            newPlayerTurn();
             //Fin du tour de jeu
         }
 
