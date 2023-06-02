@@ -5,7 +5,7 @@ import com.example.sixquiprend.Items.Card;
 import java.util.List;
 
 public class Saniel_AI extends Player {
-    private Game game;
+    private final Game game;
     private int maxDiff;
     private int minBulls;
 
@@ -15,19 +15,19 @@ public class Saniel_AI extends Player {
         this.maxDiff = 105;
         this.minBulls = 30;
     }
-
-    public int PlayTurn(Game game) {
+    // Joue un tour
+    public int PlayTurn() {
         List<Card> hand = this.getHand();
         List<Card>[] table = this.game.getTable();
         Card optimalCard = null;
-
+        // Analyse de la main
         for (Card card : hand) {
-            int maxCardInRow = 0;
+            int maxCardInRow = 0; //
             // Analyse du jeu en cours
             for (List<Card> row : table) {
-                maxCardInRow = Math.max(maxCardInRow, row.get(row.size() - 1).getValue());
-                int bullsInRow = countBulls(row);
-                int cardsInRow = row.size();
+                maxCardInRow = Math.max(maxCardInRow, row.get(row.size() - 1).getValue()); // Valeur de la carte la plus haute dans la ligne
+                int bullsInRow = countBulls(row); // Nombre de têtes de boeufs dans la ligne
+                int cardsInRow = row.size(); // Nombre de cartes dans la ligne
 
                 // Essayer de jouer une carte sans ramasser une ligne
                 if (card.getValue() > maxCardInRow && cardsInRow < 5) {
@@ -65,9 +65,38 @@ public class Saniel_AI extends Player {
             Card lowestCard = getLowestCard();
             this.setLastCard(lowestCard);
             hand.remove(lowestCard);
+
+            // Ajouter la logique pour décider et prendre la ligne ici.
+            int rowToTake = decideRowToTake();
+            takeRow(rowToTake);
         }
         return maxDiff;
     }
+    // décider quelle ligne prendre
+    private int decideRowToTake(){
+        List<Card>[] table = this.game.getTable();
+        int minBulls = Integer.MAX_VALUE;  // Utiliser Integer.MAX_VALUE pour initialiser
+        int rowToTake = -1;  // Initialiser à -1 pour s'assurer qu'une ligne est bien choisie
+        for (int i = 0; i < table.length; i++) {
+            List<Card> row = table[i];
+            int bullsInRow = countBulls(row);
+            if (bullsInRow < minBulls) {
+                minBulls = bullsInRow;
+                rowToTake = i;
+            }
+        }
+        return rowToTake;
+    }
+    // prendre une ligne
+    // prendre une ligne
+    private void takeRow(int rowToTake) {
+        List<Card>[] table = this.game.getTable();
+        List<Card> row = table[rowToTake];
+        this.getHand().addAll(row);  // Ajouter les cartes de la ligne à la main
+        row.clear();  // Effacer la ligne sur la table
+    }
+
+
     // Retourne le nombre de tete de boeuf dans une ligne
     private int countBulls(List<Card> row) {
         int totalBulls = 0;
