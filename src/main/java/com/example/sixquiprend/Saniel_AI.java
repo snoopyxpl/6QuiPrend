@@ -68,7 +68,7 @@ public class Saniel_AI extends Player {
         }
         return maxDiff;
     }
-
+    // Retourne le nombre de tete de boeuf dans une ligne
     private int countBulls(List<Card> row) {
         int totalBulls = 0;
         for (Card card : row) {
@@ -76,7 +76,7 @@ public class Saniel_AI extends Player {
         }
         return totalBulls;
     }
-
+    // Retourne la carte de valeur la plus basse de la main
     private Card getLowestCard() {
         List<Card> hand = this.getHand();
         Card lowestCard = hand.get(0);
